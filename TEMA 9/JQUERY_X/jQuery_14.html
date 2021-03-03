@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_14 - Filtros hijo - :first-child y last-child</title>
+    <script src="jquery-3.5.1.js"></script>
+</head>
+
+<body>
+    <h1>jQuery_14 - Filtros hijo - :first-child y last-child</h1>
+    <h2>Lista 1</h2>
+    <ul id="lista1">
+        <li id="uno">UNO</li>
+        <li id="dos">DOS</li>
+        <li id="tres">TRES</li>
+        <li id="cuatro">CUATRO</li>
+        <li id="cinco">CINCO</li>
+        <li id="seis">SEIS</li>
+    </ul>
+    <h2>Lista 2</h2>
+    <ul id="lista2">
+        <li id="siete">SIETE</li>
+        <li id="ocho">OCHO</li>
+        <li id="nueve">NUEVE</li>
+        <li id="diez">DIEZ</li>
+        <li id="once">ONCE</li>
+        <li id="doce">DOCE</li>
+    </ul>
+
+    <script>
+        $(function() {
+            $("li:first-child").css("backgroundColor", "yellow");
+            $("li:last-child").css("backgroundColor", "aqua");
+            $("#lista2 li:not(:first-child)").css("color", "red");
+            $("#lista1 li:not(:last-child)").css("color", "blue");
+        });
+    </script>
+</body>
+
+</html>

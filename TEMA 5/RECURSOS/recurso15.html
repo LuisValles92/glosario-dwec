@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO15</title>
+</head>
+
+<body>
+    <h1>RECURSO15</h1>
+    <p id="p1" title="parrafo1" style="font-family: Arial, Helvetica, sans-serif; font-size: 30px; text-align: center; background-color: black; color: white;">P&Aacute;RRAFO 1</p>
+    <p id="p2" title="parrafo2" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px; text-align: right; background-color: turquoise; color: blueviolet;">P&Aacute;RRAFO 2</p>
+    <img src="https://conlabanderaespañola.es/wp-content/uploads/2019/12/Bandera-de-Espa%C3%B1a-Redondo-Prendedor-Pin.jpg" width="200px" height="200px" />
+    <img src="https://img.pixers.pics/pho_wat(s3:700/FO/20/96/75/13/700_FO20967513_8a20f0ac41c1cea775443fff4e7620f4.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/fotomurales-chapa-bandera-mauricio.jpg.jpg" width="100px" height="100px"
+    />
+    <hr>
+    <button onclick="f();">INTERCAMBIAR ATRIBUTOS</button>
+    <hr>
+    <script>
+        function f() {
+            var nodoParrafo1 = document.children[0].children[1].children[1];
+            var nodoParrafo2 = document.children[0].children[1].children[2];
+            var nodoImagen1 = document.children[0].children[1].children[3];
+            var nodoImagen2 = document.children[0].children[1].children[4];
+
+            var array_Attr_nodoParrafo1 = [];
+            while (nodoParrafo1.hasAttributes()) {
+                array_Attr_nodoParrafo1.push(nodoParrafo1.attributes[0]);
+                nodoParrafo1.removeAttributeNode(nodoParrafo1.attributes[0]);
+                // nodoParrafo1.attributes.removeNamedItem(nodoParrafo1.attributes[0].name);
+            }
+
+            var array_Attr_nodoParrafo2 = [];
+            while (nodoParrafo2.hasAttributes()) {
+                array_Attr_nodoParrafo2.push(nodoParrafo2.attributes[0]);
+                nodoParrafo2.removeAttributeNode(nodoParrafo2.attributes[0]);
+            }
+
+            var array_Attr_nodoImagen1 = [];
+            var index = 0;
+            while (nodoImagen1.hasAttributes()) {
+                if (nodoImagen1.attributes[index].name != "src") {
+                    array_Attr_nodoImagen1.push(nodoImagen1.attributes[index]);
+                    nodoImagen1.removeAttributeNode(nodoImagen1.attributes[index]);
+                    --index;
+                } else {
+                    ++index;
+                }
+                if (nodoImagen1.attributes.length == 1) {
+                    break;
+                }
+            }
+            index = 0;
+            var array_Attr_nodoImagen2 = [];
+            while (nodoImagen2.hasAttributes()) {
+                if (nodoImagen2.attributes[index].name != "src") {
+                    array_Attr_nodoImagen2.push(nodoImagen2.attributes[index]);
+                    nodoImagen2.removeAttributeNode(nodoImagen2.attributes[index]);
+                    --index;
+                } else {
+                    ++index;
+                }
+                if (nodoImagen2.attributes.length == 1) {
+                    break;
+                }
+            }
+
+            var htmlcollection_body = document.children[0].children[1].children;
+            for (let i = 0; i < htmlcollection_body.length; i++) {
+                if (htmlcollection_body.item(i).isSameNode(nodoParrafo1)) {
+                    for (x in array_Attr_nodoParrafo1) {
+                        nodoParrafo1.setAttributeNode(array_Attr_nodoParrafo2[x]);
+                    }
+                }
+                if (htmlcollection_body.item(i).isSameNode(nodoParrafo2)) {
+                    for (x in array_Attr_nodoParrafo2) {
+                        nodoParrafo2.setAttributeNode(array_Attr_nodoParrafo1[x]);
+                    }
+                }
+                if (htmlcollection_body.item(i).isSameNode(nodoImagen1)) {
+                    for (x in array_Attr_nodoImagen1) {
+                        nodoImagen1.setAttributeNode(array_Attr_nodoImagen2[x]);
+                    }
+                }
+                if (htmlcollection_body.item(i).isSameNode(nodoImagen2)) {
+                    for (x in array_Attr_nodoImagen2) {
+                        nodoImagen2.setAttributeNode(array_Attr_nodoImagen1[x]);
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

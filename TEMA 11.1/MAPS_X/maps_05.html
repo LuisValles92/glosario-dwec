@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_05 - Google Static Maps - Mapas con estilos</title>
+    <style>
+        h3 {
+            font-family: Courier New, Courier, monospace;
+            color: blue
+        }
+    </style>
+</head>
+
+<body>
+    <h1>maps_05 - Google Static Maps - Mapas con estilos</h1>
+    <hr />
+    <a href="https://developers.google.com/maps/documentation/static-maps/styling" target="_blank">Documentación sobre Styled Maps de Google</a>
+    <hr />
+
+    <h2>Mapa 1 - Carreteras de color verde</h2>
+    <h3>style=feature:road|element:geometry|color:0x00ff00</h3>
+    <img id="mapa1" />
+    <br /><br /><br /><br />
+
+
+    <h2>Mapa 2 - Nombres de las calles en azul con letra pequeña</h2>
+    <h3>style=feature:road|element:labels.text|color:0x0000ff|weight:0.2</h3>
+    <img id="mapa2" />
+    <br /><br /><br /><br />
+
+
+    <h2>Mapa 3 - Los puntos de interes de un color y las etiqueta de los mismo en rojo</h2>
+    <img id="mapa3" />
+    <br /><br /><br /><br />
+
+
+    <h2>Mapa 4 - Agua de color amarillo</h2>
+    <img id="mapa4" />
+    <br /><br /><br /><br />
+
+
+    <h2>Mapa 5 - Los edificios de color azul y el borde rojo grueso</h2>
+    <img id="mapa5" />
+
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        var latlon = "41.659327,-4.726683";
+        var estilo;
+
+        //Estilo 1 --> Carreteras de color verde
+        estilo = "feature:road|element:geometry|color:0x00ff00";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=15&size=640x480&style=" + estilo;
+        document.getElementById("mapa1").setAttribute("src", img_url);
+
+
+        //Estilo 2 --> Nombres de las calles en azul con letra pequeña
+        estilo = "feature:road|element:labels.text|color:0x0000ff|weight:0.5";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=15&size=640x480&style=" + estilo;
+        document.getElementById("mapa2").setAttribute("src", img_url);
+
+
+        //Estilo 3 --> Los puntos de interes de un color y las etiqueta de los mismos en rojo
+        var estilo1 = "feature:poi|element:geometry.fill|color:0x456167";
+        var estilo2 = "feature:poi|element:labels.text|color:0xff0000|weight:0.5";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=15&size=640x480&style=" + estilo1 + "&style=" + estilo2;
+        document.getElementById("mapa3").setAttribute("src", img_url);
+
+
+        //Estilo 4 --> Agua de color amarillo
+        estilo = "feature:water|element:geometry.fill|color:yellow";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=15&size=640x480&style=" + estilo;
+        document.getElementById("mapa4").setAttribute("src", img_url);
+
+
+        //Estilo 5 --> Edificios de azul y el borde rojo grueso
+        estilo1 = "feature:landscape.man_made|element:geometry.fill|color:0x0000ff";
+        estilo2 = "feature:landscape.man_made|element:geometry.stroke|color:0xff0000|weight:5";
+        //Se varía el zoom
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=17&size=640x480&style=" + estilo1 + "&style=" + estilo2;
+        document.getElementById("mapa5").setAttribute("src", img_url);
+    </script>
+</body>
+
+</html>

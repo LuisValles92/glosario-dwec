@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>indexedDB_03 - Crear bbdd y almacén/tabla (1/2)</title>
+</head>
+
+<body>
+    <h1>indexedDB_03 - Crear bbdd y almacén/tabla (1/2)</h1>
+    <h2>Ver consola</h2>
+    <hr>
+    <button id="botonCrear" onclick="crearBD();">CREAR BBDD SOCIEDAD Y ALMACÉN PERSONAS</button>
+    <hr>
+
+    <script type="text/javascript">
+        var peticion, bd, almacenPersonas;
+
+        function crearBD() {
+            if (window.indexedDB) {
+                peticion = window.indexedDB.open("sociedad");
+
+                peticion.onsuccess = function(evento) {
+                    //Escribir el código para realizar consultas, inserciones, etc...(DML)
+                    console.log("EVENTO: success\nSe ha abierto correctamente la BBDD: " + peticion.result.name + " con la versión " + peticion.result.version);
+                    bd.close();
+                };
+
+                peticion.onupgradeneeded = function(evento) {
+                    //Escribir el código para crear o modificar la estructura de la BD (DDL)
+                    console.log("EVENTO: upgradedneeded\nLa BBDD es nueva o se modificó su versión");
+                    bd = peticion.result;
+                    console.log("CREO EL ALMACÉN PERSONAS");
+                    almacenPersonas = bd.createObjectStore("personas", {
+                        keyPath: "dni"
+                    });
+                };
+
+                peticion.onerror = function(evento) {
+                    console.log("EVENTO: error\nNo se ha abierto la BBDD\nSe produce al intentar abrir la BBDD con una versión anterior a la existente");
+                };
+
+                peticion.onblocked = function(evento) {
+                    console.log("EVENTO: blocked\nBBDD bloqueada\nSe produce al intentar abrir la BBDD con una nueva versión y esta no fue antes cerrada");
+                };
+            } else {
+                console.log("Su navegador no soporta IndexedDB");
+            }
+        }
+    </script>
+</body>
+
+</html>

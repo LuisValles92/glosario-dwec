@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>formularios_13 - Visualizador de código</title>
+</head>
+
+<body>
+    <h1>formularios_13 - Visualizador de código</h1>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    <textarea id="textoCodigo" style="width:300px;height:300px"></textarea>
+                </td>
+                <td>
+                    <div id="vistaprevia" style="border:3px black solid; width:300px; height:300px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <hr><input type="button" value="Ver vista previa" onclick="ver()" />
+                    <hr>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script language="javascript">
+        function ver() {
+            document.getElementById('vistaprevia').innerHTML = document.getElementById("textoCodigo").value;
+        }
+    </script>
+</body>
+
+</html>

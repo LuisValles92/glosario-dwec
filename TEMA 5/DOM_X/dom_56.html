@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dom_56 - NamedNodeMap: item(index)</title>
+</head>
+
+<body>
+    <h1>dom_56 - NamedNodeMap: item(index)</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Iglesia_de_la_Asunci%C3%B3n_de_Nuestra_Se%C3%B1ora%2C_Moral_de_la_Reina_01.jpg/220px-Iglesia_de_la_Asunci%C3%B3n_de_Nuestra_Se%C3%B1ora%2C_Moral_de_la_Reina_01.jpg" border="4" alt="Imagen personalizada"
+        id="imagen1" />
+    <br />
+    <hr>
+    <button onclick="mostrarAtributos();">Mostrar atributos de la imagen</button>
+    <hr>
+    <script type="text/javascript">
+        function mostrarAtributos() {
+            var c = "";
+
+            var atributosImagen = document.getElementById("imagen1").attributes;
+
+            c += "Buble for normal";
+            for (i = 0; i < atributosImagen.length; i++) {
+                c += "\n" + atributosImagen.item(i).name + " - " + atributosImagen[i].value;
+            }
+
+            alert(c);
+        }
+    </script>
+</body>
+
+</html>

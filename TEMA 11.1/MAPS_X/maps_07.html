@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_07 - GeoLocalización - Ver posición actual sobre el mapa</title>
+</head>
+
+<body>
+    <h1>maps_07 - GeoLocalización - Ver posición actual sobre el mapa</h1>
+    <hr />
+    <button onclick="verDatos();">Ver datos de la posición</button>
+    <br /><br />
+    <div id="mapa"></div>
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        function verDatos() {
+            navigator.geolocation.getCurrentPosition(
+                function(posicion) {
+                    var latlon = posicion.coords.latitude + "," + posicion.coords.longitude;
+                    var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=15&size=400x300&sensor=false";
+                    document.getElementById("mapa").innerHTML = "<img src='" + img_url + "'>";
+                },
+                function(error) {
+                    alert("Error: " + error.message);
+                }
+            );
+        }
+    </script>
+</body>
+
+</html>

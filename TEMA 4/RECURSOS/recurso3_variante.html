@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>RECURSO 3 VARIANTE</title>
+</head>
+
+<script type="application/javascript">
+    function f() {
+        if (document.images[0].style.visibility == 'visible' && document.images[1].style.visibility == 'hidden' && document.images[2].style.visibility == 'hidden') {
+            document.images[0].style.visibility = 'hidden';
+            document.images[1].style.visibility = 'visible';
+            document.images[2].style.visibility = 'hidden';
+        } else if (document.images[0].style.visibility == 'hidden' && document.images[1].style.visibility == 'visible' && document.images[2].style.visibility == 'hidden') {
+            document.images[0].style.visibility = 'hidden';
+            document.images[1].style.visibility = 'hidden';
+            document.images[2].style.visibility = 'visible';
+        } else {
+            document.images[0].style.visibility = 'visible';
+            document.images[1].style.visibility = 'hidden';
+            document.images[2].style.visibility = 'hidden';
+        }
+    }
+</script>
+
+<body onload="setInterval(f,1000);">
+    <h1>RECURSO 3 VARIANTE</h1>
+    <hr>
+    <div style="background-color: yellow; width: fit-content; height: fit-content;">
+        <img id="img_id1" style="float: left; visibility: visible;" src="https://www.beyourself.tv/wp-content/uploads/2019/01/lil-wayne-tha-carter-v-02.jpg" width="400px" height="300px" />
+        <img id="img_id2" style="float: left; visibility: hidden;" src="https://i0.wp.com/www.slang.fm/wp-content/uploads/2020/07/records-logros-eminem-portada.jpg?fit=1280%2C720&ssl=1" width="400px" height="300px" />
+        <img id="img_id2" style="visibility: hidden;" src="https://m.media-amazon.com/images/I/51Wgqn-NX9L._AC_UL320_.jpg" width="400px" height="300px" />
+    </div>
+    <hr>
+</body>
+
+</html>

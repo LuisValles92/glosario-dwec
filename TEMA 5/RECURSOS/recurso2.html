@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>RECURSO2</title>
+</head>
+<script type="application/javascript">
+    function f(element) {
+        debugger;
+        var contenido = element.textContent;
+        if (element.tagName != element.previousElementSibling.tagName) {
+            element.nextElementSibling.innerHTML = contenido;
+        } else if (element.tagName != element.nextElementSibling.tagName) {
+            element.previousElementSibling.innerHTML = contenido;
+        } else {
+            element.previousElementSibling.innerHTML = contenido;
+            element.nextElementSibling.innerHTML = contenido;
+        }
+    }
+</script>
+
+<body>
+    <h1>RECURSO2</h1>
+    <hr>
+    <p id="parrafo1" onclick="f(this);">P&Aacute;RRAFO 1</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 2</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 3</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 4</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 5</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 6</p>
+    <p onclick="f(this);">P&Aacute;RRAFO 7</p>
+    <hr>
+</body>
+
+</html>

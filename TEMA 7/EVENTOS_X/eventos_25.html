@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>eventos_25 - Arrastrar y soltar: Alternar entre ambos cuadros el texto y la imagen (bidireccional)</title>
+    <style>
+        .padre {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .c1 {
+            border: 5px solid red;
+            width: 100px;
+            height: 100px;
+            margin-right: 50px;
+        }
+        
+        .c2 {
+            border: 5px solid blue;
+            width: 100px;
+            height: 100px;
+        }
+        
+        img {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>eventos_25 - Arrastrar y soltar: Alternar entre ambos cuadros el texto y la imagen (bidireccional)</h1>
+
+    <p>* target: El objeto donde se produjo el evento, el objeto origen.</p>
+    <p>* currentTarget: El objeto que está gestionando/manejando el evento.</p>
+    <p>Es (FASE 1) - ondragstart: Ocurre cuando el usuario comienza a arrastrar un elemento.<br>e.dataTransfer.setData("", e.target.id);</p>
+    <p>CR Y CA: (FASE 2 Y FASE 3)<br>ondragover: Ocurre cuando un elemento que se puede arrastrar se arrastra sobre un destino de colocación válido.<br>e.preventDefault();<br>ondrop: Ocurre cuando un elemento arrastrable se coloca en un destino de colocación
+        válido. Aparece el cuadradito de que se puede depositar.<br>e.preventDefault();<br>var datos = e.dataTransfer.getData("");<br>e.target.appendChild(document.getElementById(datos));</p>
+
+    <div class="padre">
+        <div class="c1" id="origen" ondragover="fase2(event);" ondrop="fase3(event);">
+            <p draggable="true" id="texto" ondragstart="fase1(event);">EL TEXTO</p>
+            <img draggable="true" src="pelota.PNG" id="pelota" ondragstart="fase1(event);" />
+        </div>
+        <div class="c2" id="destino" ondragover="fase2(event);" ondrop="fase3(event);"></div>
+    </div>
+
+    <script type="text/javascript">
+        function fase1(e) {
+            e.dataTransfer.setData("", e.target.id);
+        }
+
+
+        function fase2(e) {
+            e.preventDefault();
+        }
+
+
+        function fase3(e) {
+            e.preventDefault();
+            var datos = e.dataTransfer.getData("");
+            e.target.appendChild(document.getElementById(datos));
+        }
+    </script>
+</body>
+
+</html>

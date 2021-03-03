@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO13</title>
+</head>
+<script>
+    var intervalo;
+
+    function f() {
+        intervalo = setInterval(function() {
+            var nodoBody = document.children[0].children[1];
+            var parrafo = document.getElementById("parrafo");
+            parrafo.textContent = parrafo.nextElementSibling.textContent;
+            nodoBody.appendChild(parrafo.nextElementSibling);
+        }, 1000);
+    }
+</script>
+
+<body onload="f();">
+    <h1>RECURSO13</h1>
+    <p id="parrafo"></p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 1</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 2</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 3</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 4</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 5</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 6</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 7</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 8</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 9</p>
+    <p style="visibility: hidden;">P&Aacute;RRAFO 10</p>
+</body>
+
+</html>

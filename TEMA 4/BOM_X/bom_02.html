@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>bom_02 - Objeto Window: self, parent, top, frames, frameElement</title>
+</head>
+
+<body>
+    <h1>bom_02 - Objeto Window: self, parent, top, frames, frameElement</h1>
+    <iframe src="bom_02_A.html" width="400" height="300" name="frameA"></iframe>
+    <iframe src="bom_02_B.html" width="400" height="300" name="frameB"></iframe>
+    <hr>
+
+    <script type="text/javascript">
+        window.name = "principal";
+        document.write("<p><b>window.name:</b><br>" + window.name + "</p>");
+        document.write("<p><b>window.self.name:</b><br>La propiedad self devuelve la ventana actual.<br>" + window.self.name + "</p>");
+        document.write("<p><b>window.parent.name:</b><br>Devuelve la ventana principal de la ventana actual.<br>" + window.parent.name + "</p>");
+        document.write("<p><b>window.top.name:</b><br>Devuelve la ventana superior del navegador.<br>" + window.top.name + "</p><br>");
+
+        document.write("<p><b>window.length (numero de frames):</b><br>" + window.length + "</p>");
+        document.write("<p><b>window.frames.length (numero de frames):</b><br>Devuelve todos los elementos iframe de la ventana actual.<br>" + window.frames.length + "</p>");
+        document.write("<p>La propiedad frames devuelve un objeto similar a una matriz, que representa todos los elementos iframe en la ventana actual.</p>");
+        document.write("<p><b>window.frames[0].name:</b> " + window.frames[0].name + "</p>");
+        document.write("<p><b>window.frames[0].location:</b> " + window.frames[0].location + "</p>");
+        document.write("<p><b>window.frames[1].name:</b> " + window.frames[1].name + "</p>");
+        document.write("<p><b>window.frames[1].location:</b> " + window.frames[1].location + "</p><br>");
+
+        //Una comparación (identidad/igualdad) estricta (por ejemplo, ===) solo es verdadera si los operandos son del mismo tipo y los contenidos coinciden, sin conversión de tipo.
+        if (window === window.self) {
+            document.write("<p><b>window === window.self</b></p>");
+        }
+
+        if (window === window.parent) {
+            document.write("<p><b>window === window.parent</b></p>");
+        }
+
+        if (window === window.top) {
+            document.write("<p><b>window === window.top</b></p>");
+        }
+    </script>
+    <hr>
+</body>
+
+</html>

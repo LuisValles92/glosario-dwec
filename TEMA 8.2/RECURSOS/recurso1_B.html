@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECURSO1_B</title>
+</head>
+
+<body>
+    <h1>RECURSO1_B - Evento storage</h1>
+    <input type="text" id="clave" placeholder="CLAVE">
+    <input type="text" id="valor" placeholder="VALOR">
+    <button onclick="setProperty();">ESTABLECER STORAGE</button>
+    <p id="parrafo"></p>
+    <script type="application/javascript">
+        window.addEventListener("storage", e => {
+            document.body.style.backgroundColor = "green";
+            document.getElementById("parrafo").innerHTML = "key: " + e.key + "<br>oldValue: " + e.oldValue + "<br>newValue: " + e.newValue;
+        });
+
+        function setProperty() {
+            window.localStorage.setItem(document.getElementById("clave").value, document.getElementById("valor").value);
+        }
+    </script>
+</body>
+
+</html>

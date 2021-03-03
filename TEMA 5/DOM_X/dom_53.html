@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dom_53 - removeAttribute("nombre_atributo"), removeAttributeNode(Attr)</title>
+</head>
+
+<body>
+    <h1>dom_53 - removeAttribute("nombre_atributo"), removeAttributeNode(Attr)</h1>
+    <img src="https://piks-eldesmarqueporta.netdna-ssl.com/thumbs/680/bin/2020/05/22/plaza_de_valladolid.jpg" border="8" alt="Imagen personalizada" id="imagen1" />
+    <p id="parrafo2" align="center">Segundo párrafo</p>
+    <br />
+    <hr>
+    <button onclick="eliminarAtributos();">Eliminar atributos</button>
+    <hr>
+    <script type="text/javascript">
+        function eliminarAtributos() {
+            var c = "\nIMAGEN";
+
+            var nodoImagen = document.getElementById("imagen1");
+            c += "\nAtributos antes de eliminar (sólo borra el border): " + nodoImagen.attributes.length;
+            //removeAttribute --> Se indica el nombre del atributo. No devuelve valor
+            nodoImagen.removeAttribute("border");
+
+
+
+            var nodoParrafo = document.getElementById("parrafo2");
+            var atributo = nodoParrafo.getAttributeNode("align");
+            //removeAttributeNode --> Se indica el objeto atributo. Se devuelve lo eliminado
+            var attrEliminado = nodoParrafo.removeAttributeNode(atributo);
+            c += "\n\nPÁRRAFO\n(sólo borra el align)\n" + attrEliminado.name + " - " + attrEliminado.value;
+
+            alert(c);
+        }
+    </script>
+</body>
+
+</html>

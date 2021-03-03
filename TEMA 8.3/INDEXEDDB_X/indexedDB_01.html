@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>indexedDB_01 - Crear una BBDD indexedDB (abrir y cerrar)</title>
+</head>
+
+<body>
+    <h1>indexedDB_01 - Crear una BBDD indexedDB (abrir y cerrar)</h1>
+    <h2>Ver consola</h2>
+    <legend>Nombre de la BBDD:</legend>
+    <input type="text" id="bdnombre" />
+    <br /><br />
+    <legend>Versión:</legend>
+    <input type="number" id="bdversion" min="1" />
+    <br /><br />
+    <hr>
+    <button onclick="abrirBD();">ABRIR</button>
+    <button onclick="cerrarBD();">CERRAR</button>
+    <hr>
+
+    <script type="text/javascript">
+        var peticion, bd;
+
+        function abrirBD() {
+            var nombre = document.getElementById("bdnombre").value;
+            if (window.indexedDB) {
+                if (document.getElementById("bdnombre").value != "") {
+                    if (document.getElementById("bdversion").value == "") {
+                        //toma la version 1 si no se indica
+                        peticion = window.indexedDB.open(nombre);
+                    } else {
+                        var version = parseInt(document.getElementById("bdversion").value);
+                        peticion = window.indexedDB.open(nombre, version);
+                    }
+
+                    peticion.onsuccess = function(evento) {
+                        //peticion es igual a evento.target
+                        console.log("EVENTO: success\nSe abrió correctamente la BBDD: " + peticion.result.name + " con versión " + peticion.result.version);
+                        bd = peticion.result;
+                    };
+
+                    peticion.onupgradeneeded = function(evento) {
+                        console.log("EVENTO: upgradedneeded\nLa BBDD es nueva o se modificó su versión");
+                    };
+
+                    peticion.onerror = function(evento) {
+                        console.log("EVENTO: error\nNo se ha abierto la BBDD\nSe produce al intentar abrir la BBDD con una versión anterior a la existente");
+                    };
+
+                    peticion.onblocked = function(evento) {
+                        console.log("EVENTO: blocked\nBBDD bloqueada\nSe produce al intentar abrir la BBDD con una nueva versión y esta no fue antes cerrada");
+                    };
+                } else {
+                    alert("Introduzca un nombre para la BBDD");
+                }
+            } else {
+                console.log("Su navegador no soporta IndexedDB");
+            }
+        }
+
+        function cerrarBD() {
+            if (bd != undefined) {
+                bd.close();
+                console.log("Se cerró la BBDD: " + bd.name);
+            } else alert("Para cerrar abra antes una BBDD");
+        }
+    </script>
+</body>
+
+</html>

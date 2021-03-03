@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego: Tres en raya</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+
+<body onload="eliminarItems();">
+    <h1>Juego: Tres en raya</h1>
+    <h2 class="tablero-h2">TABLERO</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td id="1">1</td>
+                <td id="2">2</td>
+                <td id="3">3</td>
+            </tr>
+            <tr>
+                <td id="4">4</td>
+                <td id="5">5</td>
+                <td id="6">6</td>
+            </tr>
+            <tr>
+                <td id="7">7</td>
+                <td id="8">8</td>
+                <td id="9">9</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="recurso4_B.html" target="_blank" class="ja-a">JUGADOR A</a>
+        </li>
+        <li>
+            <a href="recurso4_C.html" target="_blank" class="jb-a">JUGADOR B</a>
+        </li>
+    </ul>
+
+    <script type="application/javascript">
+        function eliminarItems() {
+            localStorage.removeItem("A");
+            localStorage.removeItem("B");
+            localStorage.removeItem("Turno");
+            localStorage.removeItem("Ganador");
+        }
+
+        function combinacionesParaGanar(e) {
+            var primero = document.getElementById("1");
+            var segundo = document.getElementById("2");
+            var tercero = document.getElementById("3");
+            var cuarto = document.getElementById("4");
+            var quinto = document.getElementById("5");
+            var sexto = document.getElementById("6");
+            var septimo = document.getElementById("7");
+            var octavo = document.getElementById("8");
+            var noveno = document.getElementById("9");
+            if ((primero.textContent == segundo.textContent && segundo.textContent == tercero.textContent) ||
+                (cuarto.textContent == quinto.textContent && quinto.textContent == sexto.textContent) ||
+                (septimo.textContent == octavo.textContent && octavo.textContent == noveno.textContent) ||
+                (primero.textContent == cuarto.textContent && cuarto.textContent == septimo.textContent) ||
+                (segundo.textContent == quinto.textContent && quinto.textContent == octavo.textContent) ||
+                (tercero.textContent == sexto.textContent && sexto.textContent == noveno.textContent) ||
+                (primero.textContent == quinto.textContent && quinto.textContent == noveno.textContent) ||
+                (tercero.textContent == quinto.textContent && quinto.textContent == septimo.textContent))
+                localStorage.setItem("Ganador", e.key);
+        }
+
+        window.addEventListener("storage", e => {
+            if (e.key != "Turno") {
+                if (e.key == "A") {
+                    document.getElementById(e.newValue).textContent = "X";
+                    document.getElementById(e.newValue).className = "player-1";
+                } else {
+                    document.getElementById(e.newValue).textContent = "O";
+                    document.getElementById(e.newValue).className = "player-2";
+                }
+                combinacionesParaGanar(e);
+            }
+        });
+    </script>
+</body>
+
+</html>

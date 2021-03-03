@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_69 - Recorrer el DOM: Todos los hijos: contents()</title>
+    <script src="jquery-3.5.1.js"></script>
+    <style type="text/css">
+        span {
+            background-color: yellow;
+        }
+        
+        div {
+            border: 2px solid black;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery_69 - Recorrer el DOM: Todos los hijos: contents()</h1>
+    contents() --> Devuelve los hijos de un elemento, que pueden ser elementos html, nodos de texto o comentarios. Es similar a children pero children no incluye nodos de texto ni comentarios.
+    <h2>contents</h2>
+    <div id="contenido1">
+        <b>Esta es la primera línea</b>
+        <br /><br />
+        <b>Esta es la segunda línea</b>
+        <br /><br />
+        <b>Esta es la tercera línea</b>
+        <br /><br /> Texto suelto al final
+    </div>
+    <h2>children</h2>
+    <div id="contenido2">
+        <b>Esta es la cuarta línea</b>
+        <br /><br />
+        <b>Esta es la quinta línea</b>
+        <br /><br />
+        <b>Esta es la sexta línea</b>
+        <br /><br /> Texto suelto al final
+    </div>
+
+    <script>
+        $(function() {
+            //Contents se aplica a nodos de texto
+            $("#contenido1").contents().wrap("<span></span>");
+            //Children no se aplica a nodos de texto
+            $("#contenido2").children().wrap("<span></span>");
+        });
+    </script>
+</body>
+
+</html>

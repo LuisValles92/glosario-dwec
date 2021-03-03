@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>cookies_06 - Ejercicio: Contador de accesos con cookies</title>
+</head>
+
+<body onload="contar();">
+    <h1>cookies_06 - Ejercicio: Contador de accesos con cookies</h1>
+    <hr />
+    <p id="parrafoAccesos" style="font-size: 300%"></p>
+
+    <script type="text/javascript">
+        function leerCookie(clave) {
+            var resultado = "";
+            var busqueda = clave + "=";
+            var listCookies = document.cookie.split(';');
+            var par = "";
+            for (var i = 0; i < listCookies.length; i++) {
+                par = listCookies[i];
+                while (par.charAt(0) == ' ') {
+                    par = par.substring(1);
+                }
+                if (par.indexOf(busqueda) == 0) {
+                    resultado = par.substring(busqueda.length, par.length);
+                }
+            }
+            return resultado;
+        }
+
+        function contar() {
+            var valorCookie = leerCookie("accesos");
+            var d = new Date();
+            var valorNuevo;
+            d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+            var caduca = "expires=" + d.toUTCString();
+            if (valorCookie == "") {
+                valorNuevo = 1;
+            } else {
+                valorNuevo = parseInt(valorCookie) + 1;
+            }
+            document.cookie = "accesos=" + valorNuevo + ";" + caduca;
+            document.getElementById("parrafoAccesos").innerHTML = valorNuevo;
+        }
+    </script>
+</body>
+
+</html>
