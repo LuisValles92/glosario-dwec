@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>eventos_15 - Objeto Event</title>
+    <style>
+        div {
+            left: 25%;
+            top: 25%;
+            position: relative;
+        }
+        
+        .claseRojo {
+            background-color: red;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>eventos_15 - Objeto Event</h1>
+    <h2>Ver consola en el input text</h2>
+
+    <hr>
+    <div class="claseRojo" id="cRojo">
+    </div>
+    <hr>
+
+    <br /><br />
+
+    <hr>
+    <input type="text" id="texto" />
+    <hr>
+
+    <script type="text/javascript">
+        document.getElementById("cRojo").addEventListener("mousedown", f);
+
+        function f(e) {
+            var c = "";
+
+            c += "\nTipo de evento: " + e.type;
+            c += "\nObjeto que lo produce: " + e.target;
+            c += "\nEtiqueta del objeto que lo produce: " + e.target.tagName;
+
+            c += "\nObjeto que gestiona el evento: " + e.currentTarget;
+            c += "\nEtiqueta del objeto que gestiona el evento: " + e.currentTarget.tagName;
+            c += "\n¿Esta en fase bubble?: " + e.bubbles;
+            c += "\n¿Se puede cancelar?: " + e.cancelable;
+
+
+            //Si es del tipo MouseEvent
+            c += "\nCoordenada X del documento: " + e.pageX;
+            c += "\nCoordenada Y del documento: " + e.pageY;
+            c += "\nCoordenada X de la pantalla: " + e.screenX;
+            c += "\nCoordenada Y de la pantalla: " + e.screenY;
+            c += "\nCoordenada X del cliente: " + e.clientX;
+            c += "\nCoordenada Y del cliente: " + e.clientY;
+            c += "\nFase del evento: " + e.eventPhase;
+            c += "\nTecla ALT: " + e.altKey;
+            c += "\nTecla CTRL: " + e.ctrlKey;
+            c += "\nTecla SHIFT: " + e.shiftKey;
+            c += "\nBotón: " + e.buttons; //1-izquierda -- 4-rueda -- 2-derecho
+            c += "\nTecla: " + e.key;
+
+            alert(c);
+        }
+
+        document.getElementById("texto").addEventListener("focus", function(event) {
+            console.log(event.bubbles); //false
+        });
+
+        document.getElementById("texto").addEventListener("keypress", function(event) {
+            console.log(event.key + " - " + event.keyCode);
+        });
+    </script>
+</body>
+
+</html>

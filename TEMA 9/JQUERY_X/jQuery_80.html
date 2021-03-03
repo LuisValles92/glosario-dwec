@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_80 - Manipular el DOM: Eliminar un elemento: remove, detach</title>
+    <script src="jquery-3.5.1.js"></script>
+    <style>
+        .colorFondo {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery_80 - Manipular el DOM: Eliminar un elemento: remove, detach</h1>
+    <hr /> remove --> Elimina un elemento (todo)
+    <br /> detach --> Elimina un elemento conservando algunos datos (p.e. eventos)
+    <button id="boton">Probar detach o remove</button>
+    <p id="parrafo">Este es el quinto párrafo</p>
+    </div>
+
+    <script>
+        $(function() {
+            $("#parrafo").hover(function() {
+                $(this).addClass("colorFondo");
+            }, function() {
+                $(this).removeClass("colorFondo");
+            });
+
+            var p = null;
+            $("#boton").click(function() {
+                if (p) {
+                    p.appendTo("body");
+                    p = null;
+                } else {
+                    p = $("p").detach();
+                    //detach también se puede ejecutar con un selector --> detach(selector)
+
+                    //Comentar la línea de detach y ejecutar remove para ver la diferencia
+                    //p = $("p").remove(); //El evento hover desaparece
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

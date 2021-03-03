@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>RECURSO2</title>
+</head>
+
+<body>
+    <h1>RECURSO2</h1>
+
+    <form id="formulario"></form>
+    <hr>
+    <button onclick="crearFormulario()">Crear formulario</button><br />
+    <hr>
+    <script type="text/javascript">
+        var cadena_json = '{"campos":[\
+		{"id":"nombre","name":"nombre","type":"text","placeholder":"Escribe el nombre"},\
+		{"id":"clave","name":"clave","type":"password"},\
+		{"id":"mayorEdad","name":"mayorEdad","type":"checkbox","checked":"checked"},\
+		{"id":"modulo","name":"modulo","type":"radio","opciones":[\
+		{"value":"servidor","texto":"Prog.Servidor"},\
+		{"value":"cliente","texto":"Prog.Cliente"},\
+		{"value":"diseño","texto":"Diseño"}\
+		]},\
+		{"id":"descripcion","name":"descripcion","type":"textarea","placeholder":"Escribe la descripción"},\
+		{"id":"nacionalidades","name":"nacionalidades","type":"select","opciones":[\
+		{"value":"es","texto":"Española"},\
+		{"value":"fr","texto":"Francesa"},\
+		{"value":"de","texto":"Alemana"},\
+		{"value":"pt","texto":"Portuguesa"},\
+		{"value":"uk","texto":"Británica"}]}\
+		]}';
+
+        var _obj = JSON.parse(cadena_json);
+        var array_obj = _obj.campos;
+
+        function crearFormulario() {
+            console.log(_obj);
+            console.log(array_obj.length);
+            for (let i = 0; i < array_obj.length; i++) {
+                var obj = array_obj[i];
+                var label = document.createElement("label");
+                var input = document.createElement("input");
+                var vector_claves = Object.keys(obj);
+                var vector_valores = Object.values(obj);
+                if (obj.type == "text" || obj.type == "password" || obj.type == "checkbox" || obj.type == "textarea") {
+                    for (let j = 0; j < vector_claves.length; j++) {
+                        var clave = vector_claves[j];
+                        var valor = vector_valores[j];
+                        input.setAttribute(clave, valor);
+                        if (clave == "id") {
+                            label.textContent = valor + " ";
+                        }
+                    }
+                    document.getElementById("formulario").appendChild(document.createElement("br"));
+                    document.getElementById("formulario").appendChild(document.createElement("br"));
+                    document.getElementById("formulario").appendChild(label);
+                    document.getElementById("formulario").appendChild(input);
+                } else {
+                    if (obj.type == "radio") {
+                        for (let x = 0; x < vector_claves.length; x++) {
+                            var clave = vector_claves[x];
+                            var valor = vector_valores[x];
+                            if (clave == "id") {
+                                label.textContent = valor + " ";
+                            }
+                            if (typeof valor === "object") {
+                                // clave_array = clave;
+                                var array_opciones = valor;
+                            }
+                        }
+
+                        document.getElementById("formulario").appendChild(document.createElement("br"));
+                        document.getElementById("formulario").appendChild(document.createElement("br"));
+
+                        // console.log(clave_array);
+                        console.log(array_opciones);
+                        document.getElementById("formulario").appendChild(label);
+                        for (let y = 0; y < array_opciones.length; y++) {
+
+                            var _input = document.createElement("input");
+                            var label_opciones = document.createElement("label");
+
+                            var vector_claves_opciones = Object.keys(array_opciones[y]);
+                            var vector_valores_opciones = Object.values(array_opciones[y]);
+                            for (let z = 0; z < vector_claves_opciones.length; z++) {
+                                var clave_opciones = vector_claves_opciones[z];
+                                var valor_opciones = vector_valores_opciones[z];
+                                if (clave_opciones != "texto") {
+                                    _input.setAttribute(clave_opciones, valor_opciones);
+                                } else {
+                                    label_opciones.textContent = " " + valor_opciones;
+                                }
+                            }
+                            for (let a = 0; a < vector_claves.length; a++) {
+                                var clave = vector_claves[a];
+                                var valor = vector_valores[a];
+
+                                if (typeof valor !== "object") {
+                                    _input.setAttribute(clave, valor);
+                                }
+                            }
+                            document.getElementById("formulario").appendChild(document.createElement("br"));
+                            document.getElementById("formulario").appendChild(_input);
+                            document.getElementById("formulario").appendChild(label_opciones);
+                        }
+                    }
+                    if (obj.type == "select") {
+                        var select = document.createElement("select");
+                        for (let j = 0; j < vector_claves.length; j++) {
+                            var clave = vector_claves[j];
+                            var valor = vector_valores[j];
+                            if (clave == "id") {
+                                label.textContent = valor + " ";
+                            }
+                            if (clave != "opciones" && clave != "type") {
+                                select.setAttribute(clave, valor);
+                            }
+                            if (clave == "opciones") {
+                                for (let l = 0; l < valor.length; l++) {
+                                    var option = document.createElement("option");
+                                    option.setAttribute("value", valor[l].value);
+                                    option.textContent = valor[l].texto;
+                                    select.appendChild(option);
+                                }
+                            }
+                        }
+                        document.getElementById("formulario").appendChild(document.createElement("br"));
+                        document.getElementById("formulario").appendChild(document.createElement("br"));
+                        document.getElementById("formulario").appendChild(label);
+                        document.getElementById("formulario").appendChild(select);
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

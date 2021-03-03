@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO16</title>
+    <style>
+        .clase_div {
+            background-color: steelblue;
+            border-radius: 10px;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body style="background-color: aqua;">
+    <h1 style="background-color: black; color: white; text-align: center;" id="cabecera_1" title="cabecera_principal">RECURSO16</h1>
+    <img src="https://media1.tenor.com/images/6e28f1503b475f41621308ed2a7fdb15/tenor.gif?itemid=15967244" width="400px" height="300px" alt="imagen_principal" id="imagen_1" />
+    <div class="clase_div" id="div_1">
+        <div id="div_2">
+            <p style="text-align: justify; font-size: 50px; color: whitesmoke;" id="parrafo_1">P&Aacute;RRAFO 1</p>
+            <img src="https://i1.wp.com/www.bloguero-ec.com/wp-content/uploads/2017/08/titanic.gif" alt="imagen_secundaria" id="imagen_2" width="400px" height="300px" style="margin-left: auto; margin-right: auto; display: block;" />
+        </div>
+        <p style="text-align: right; font-size: 30px; color: yellow;" id="parrafo_2">P&Aacute;RRAFO 2</p>
+    </div>
+    <p style="text-align: center; font-size: 20px; color: black; background-color: wheat;" id="parrafo_3">P&Aacute;RRAFO 3</p>
+    <hr>
+    <button onclick="f();">IMPRIMIR ATRIBUTOS DE TODOS LOS ELEMENTOS (VER CONSOLA)</button>
+    <hr>
+    <script>
+        function f() {
+            var htmlcollection = document.getElementsByTagName("*");
+            var mensaje = "";
+            for (let i = 0; i < htmlcollection.length; i++) {
+                var elemento = htmlcollection.item(i);
+                if (elemento.hasAttributes()) {
+                    mensaje += elemento.tagName + " => \n";
+                    var namednodemap = elemento.attributes;
+                    for (let j = 0; j < namednodemap.length; j++) {
+                        var attr = namednodemap.item(j);
+                        mensaje += attr.name + ": " + attr.value + "\n";
+                    }
+                }
+            }
+            // alert(mensaje);
+            console.log(mensaje);
+        }
+    </script>
+</body>
+
+</html>

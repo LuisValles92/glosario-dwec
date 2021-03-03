@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>eventos_18 - Eliminar la acción concreta por defecto: preventDefault()</title>
+</head>
+
+<body>
+    <h1>eventos_18 - Eliminar la acción concreta por defecto: preventDefault()</h1>
+    <hr>
+    <a href="http://www.iesribera.es" id="enlace1">IES Ribera de Castilla</a>
+    <hr>
+    <br /><br />
+    <form>
+        <hr>
+        <input type="text" id="caja1" />
+        <hr>
+        <br /><br />
+        <hr>
+        <input type="submit" value="Enviar" id="enviar">
+        <hr>
+    </form>
+
+    <script type="text/javascript">
+        document.getElementById("enlace1").addEventListener("click", function(event) {
+            event.preventDefault();
+        });
+
+        document.getElementById("caja1").addEventListener("keypress", function(event) {
+            event.preventDefault();
+        });
+
+        document.getElementById("enviar").addEventListener("click", function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

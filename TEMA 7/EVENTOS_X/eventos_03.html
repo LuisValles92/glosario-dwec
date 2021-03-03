@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>eventos_03 - Eventos del documento</title>
+    <style>
+        #c1 {
+            background-color: green;
+            width: 7cm;
+            height: 30cm;
+        }
+    </style>
+</head>
+
+<body onload="alert('onload:\nOcurre cuando se ha cargado un objeto (body).');" onunload="alert('onunload:\nOcurre una vez que se ha descargado una página (o se ha cerrado la ventana del navegador) (body).');" onbeforeunload="alert('onbeforeunload:\nOcurre cuando el documento está a punto de descargarse.\nEste evento le permite mostrar un mensaje en un cuadro de diálogo de confirmación para informar al usuario si quiere quedarse o salir de la página actual. (body)');"
+    onresize="console.log('onresize (body)');" onscroll="console.log('onscroll (body)');">
+
+    <h1>eventos_03 - Eventos del documento</h1>
+    <h2>Ver en consola (aplicados al body):<br><br>onresize: Ocurre cuando se cambia el tamaño de la ventana del navegador.<br><br>onscroll: Ocurre cuando se desplaza la barra de desplazamiento de un elemento.</h2>
+
+    <hr>
+    <img src="imageninexistente.jpg" onerror="alert('onerror (img -> src inexistente):\nSe activa cuando se produce un error al cargar un archivo externo (por ejemplo, un documento o una imagen).');" />
+    <hr>
+    <br><br>
+
+    <div id="c1">
+        Para hacer scroll
+    </div>
+</body>
+
+</html>

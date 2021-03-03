@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_06 - GeoLocalización - Método getCurrentPosition y Objeto Position</title>
+</head>
+
+<body>
+    <h1>maps_06 - GeoLocalización - Método getCurrentPosition y Objeto Position</h1>
+    <hr />
+    <button onclick="verDatos();">Ver datos de la posición</button>
+    <p id="datos"></p>
+
+    <script type="text/javascript">
+        function verDatos() {
+            //Comprobar si el navegador tiene soporte para geolocalización
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function(posicion) {
+                        var c = "";
+
+                        //El objeto position tiene dos campos
+                        //-coords
+                        //-timestamp
+                        var coordenadas = posicion.coords;
+                        c += "Latitud: " + coordenadas.latitude + "<br />";
+                        c += "Longitud: " + coordenadas.longitude + "<br />";
+                        c += "Altitud: " + coordenadas.altitude + "<br />";
+                        c += "Precisión: " + coordenadas.accuracy + "<br />";
+                        c += "Precisión de la altitud: " + coordenadas.altitudeAccuracy + "<br />";
+                        c += "Dirección: " + coordenadas.heading + "<br />";
+                        c += "Velocidad: " + coordenadas.speed + "<br />";
+
+                        var hora = new Date(posicion.timestamp);
+
+                        c += "Datos obtenidos con fecha: " + hora.toString();
+
+                        document.getElementById("datos").innerHTML = c;
+                    },
+                    function(error) {
+                        alert("Error: " + error.message);
+                    }
+                );
+            } else {
+                console.log("Geolocalización no disponible");
+            }
+        }
+    </script>
+</body>
+
+</html>

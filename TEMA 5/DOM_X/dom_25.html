@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dom_25 - HTMLCollection</title>
+</head>
+
+<body>
+    <h1>dom_25 - HTMLCollection</h1>
+    <p id="parrafo1">Primer párrafo</p>
+    <p id="parrafo2">Segundo párrafo</p>
+    <p name="parrafo3">Tercer párrafo</p>
+    <hr>
+    <button onclick="f();">VER</button>
+    <hr>
+    <script type="text/javascript">
+        function f() {
+            c = "";
+
+            //HTMLCollection
+            var elementosBody = document.children[0].children[1].children;
+
+            c += "Número de elementos: " + elementosBody.length;
+
+            //Propiedad item
+            c += "\n\nEtiqueta del segundo párrafo: " + elementosBody[2].tagName;
+            c += "\nEtiqueta (de otra manera) del segundo párrafo: " + elementosBody.item(2).tagName;
+            c += "\nTexto del segundo párrafo: " + elementosBody[2].textContent;
+            c += "\nTexto (de otra manera) del segundo párrafo: " + elementosBody.item(2).textContent;
+
+            //Propiedad namedItem
+            var nodoP2 = document.getElementsByTagName("p").namedItem("parrafo2");
+            c += "\n\nEtiqueta del segundo párrafo: " + nodoP2.tagName;
+            c += "\nTexto del segundo párrafo: " + nodoP2.textContent;
+
+            //Recorrido con bucle for
+            c += "\n\nRecorrido con bucle for (tagname)";
+            for (let i = 0; i < elementosBody.length; i++) {
+                c += "\n" + elementosBody.item(i).tagName;
+            }
+
+            //Recorrido con Array.from
+            c += "\n\nRecorrido con Array.from (tagname y contenido)";
+            Array.from(elementosBody, function(elemento) {
+                c += "\n" + elemento.tagName + " -- " + elemento.textContent;
+            });
+
+            //Con forEach no es posible
+            alert(c);
+        }
+    </script>
+</body>
+
+</html>

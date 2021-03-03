@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMEN 4</title>
+    <style>
+        div {
+            border: solid red;
+        }
+    </style>
+    <script type="text/javascript" src="jsPDF/jspdf.js"></script>
+</head>
+
+<body>
+    <h1>EXAMEN 4</h1>
+    <legend>Precio mínimo:</legend>
+    <input type="number" id="precio_minimo" min="0" step="1">
+    <br><br>
+    <legend>Precio máximo:</legend>
+    <input type="number" id="precio_maximo" min="0" step="1">
+    <br><br>
+    <button onclick="consultarTitulos();">CONSULTAR</button>
+    <br><br>
+    <h2>Títulos de los libros</h2>
+    <div id="contenedor"></div>
+    <br>
+    <button id="crear" onclick="crearPDF();" disabled="disabled">CREAR PDF</button>
+    <button id="eliminar" onclick="eliminarLibroSeleccionado();" disabled="disabled">ELIMINAR LIBRO SELECCIONADO</button>
+
+    <script type="application/javascript">
+        var datos;
+
+        function consultarTitulos() {
+            var peticion;
+            var url = "examen1.php";
+            var _precio_minimo = parseInt(document.getElementById("precio_minimo").value);
+            var _precio_maximo = parseInt(document.getElementById("precio_maximo").value);
+
+            if (window.XMLHttpRequest) {
+                peticion = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                peticion = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            peticion.open('GET', url + "?preciomin=" + _precio_minimo + "&preciomax=" + _precio_maximo, true);
+            peticion.send(null);
+
+            peticion.onreadystatechange = function(evento) {
+                if ((peticion.readyState == 4) && ((peticion.status == 200))) {
+                    datos = JSON.parse(peticion.responseText);
+                    procesarDatos(datos);
+                }
+            };
+        }
+
+        function procesarDatos(datos) {
+            document.getElementById("contenedor").innerHTML = "";
+            for (let i = 0; i < datos.length; i++) {
+                if (i == 0)
+                    document.getElementById("contenedor").innerHTML += "<br><input checked='checked' type='radio' name='libros' value='" + datos[i].isbn + "'>" + datos[i].titulo + "<br><br>";
+                else
+                    document.getElementById("contenedor").innerHTML += "<input type='radio' name='libros' value='" + datos[i].isbn + "'>" + datos[i].titulo + "<br><br>";
+            }
+            if (datos.length > 0) {
+                document.getElementById("crear").removeAttribute("disabled");
+                document.getElementById("eliminar").removeAttribute("disabled");
+            }
+        }
+
+        function eliminarLibroSeleccionado() {
+            var html_Collection = document.getElementsByTagName("INPUT");
+            var valor;
+            for (let i = 0; i < html_Collection.length; i++) {
+                if (html_Collection.item(i).checked) {
+                    valor = parseInt(html_Collection.item(i).value);
+                }
+            }
+            var peticion;
+            var url = "examen2.php";
+
+            if (window.XMLHttpRequest) {
+                peticion = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                peticion = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            peticion.open('GET', url + "?codigo=" + valor, true);
+            peticion.send(null);
+
+            peticion.onreadystatechange = function(evento) {
+                if ((peticion.readyState == 4) && ((peticion.status == 200))) {
+                    document.getElementById("contenedor").innerText = peticion.responseText;
+                    document.getElementById("crear").setAttribute("disabled", "disabled");
+                    document.getElementById("eliminar").setAttribute("disabled", "disabled");
+                }
+            };
+        }
+
+        function crearPDF() {
+            var html_Collection = document.getElementsByTagName("INPUT");
+            var valor;
+            var array_String = [];
+            for (let i = 0; i < html_Collection.length; i++) {
+                if (html_Collection.item(i).checked) {
+                    valor = parseInt(html_Collection.item(i).value);
+                }
+            }
+            for (let i = 0; i < datos.length; i++) {
+                if (datos[i].isbn == valor) {
+                    array_String.push("ISBN: " + datos[i].isbn);
+                    array_String.push("TITULO: " + datos[i].titulo);
+                    array_String.push("AUTOR: " + datos[i].autor);
+                    array_String.push("EDITORIAL: " + datos[i].editorial);
+                    array_String.push("NUMERO DE PAGINAS: " + datos[i].paginas);
+                    array_String.push("PRECIO: " + datos[i].precio);
+                }
+            }
+
+            var pdf = new jsPDF('portrait', 'mm', 'a4');
+            pdf.text(30, 30, "DATOS DEL LIBRO");
+            pdf.text(30, 40, array_String);
+
+            var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+            if (es_chrome) {
+                var win = window.open();
+                win.document.write('<iframe src="' + pdf.output('datauri') + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+            }
+
+            var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            if (es_firefox) {
+                pdf.output('datauri');
+            }
+        }
+    </script>
+</body>
+
+</html>

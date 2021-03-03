@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dom_57 - NamedNodeMap: getNamedItem("nombre_atributo")</title>
+</head>
+
+<body>
+    <h1>dom_57 - NamedNodeMap: getNamedItem("nombre_atributo")</h1>
+    <img src="https://www.iagua.es/sites/default/files/styles/thumbnail-750x422/public/castrodeza_abastecimiento.JPG?itok=120olWzm" border="4" alt="Imagen personalizada" id="imagen1" />
+    <br />
+    <hr>
+    <button onclick="mostrarAtributo();">Mostrar atributo alt</button>
+    <hr>
+    <script type="text/javascript">
+        function mostrarAtributo() {
+            var c = "";
+            var atributosImagen = document.getElementById("imagen1").attributes;
+            var at1 = atributosImagen.getNamedItem("alt");
+            c += "Alt\n" + at1.value;
+            alert(c);
+        }
+    </script>
+
+</body>
+
+</html>

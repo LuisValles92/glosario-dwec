@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dom_01 - Creación de objetos: createElement, createTextNode, createAttribute, createComment</title>
+    <style>
+        .color_red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>dom_01 - Creación de objetos: createElement, createTextNode, createAttribute, createComment</h1>
+    <hr>
+    <button onclick="crearElementos();">Crear objetos</button>
+    <hr>
+
+    <script type="text/javascript">
+        function crearElementos() {
+            //CREAR ELEMENTOS NODO
+            var parrafo1 = document.createElement("p");
+            parrafo1.innerHTML = "Esto es un p&aacute;rrafo";
+            document.body.appendChild(parrafo1);
+
+            var cabecera_h2 = document.createElement("h2");
+            cabecera_h2.innerHTML = "Esto es una cabecera";
+            document.body.appendChild(cabecera_h2);
+
+            var lista = document.createElement("ul");
+            lista.innerHTML = "Esto es una lista";
+            document.body.appendChild(lista);
+
+            var elementoLista = document.createElement("li");
+            elementoLista.innerHTML = "Esto es un elemento de lista";
+            document.body.appendChild(elementoLista);
+
+            var cabecera_h1 = document.createElement("h1");
+
+            //CREAR ELEMENTOS DE TEXTO
+            var cadena1 = document.createTextNode("Texto principal");
+            cabecera_h1.appendChild(cadena1);
+            document.body.appendChild(cabecera_h1);
+
+            var cadena2 = document.createTextNode("Otra cadena");
+            document.body.appendChild(cadena2);
+
+            var cadena3 = document.createTextNode(" Y PRIMARIO");
+            cabecera_h1.appendChild(cadena3);
+            // document.body.appendChild(cabecera_h1);
+
+            //CREAR ATRIBUTOS
+            var atributo1 = document.createAttribute("class");
+            atributo1.value = "color_red";
+            cabecera_h2.setAttributeNode(atributo1);
+            // ASIGNAR UN VALOR A LA PROPIEDAD DE STYLE DE UN ELEMENTO DE OTRA FORMA:
+            // cabecera_h2.style.color = "blue";
+
+            var atributo2 = document.createAttribute("align");
+            atributo2.value = "center";
+            cabecera_h2.setAttributeNode(atributo2);
+
+            //CREAR COMENTARIOS
+            var comentario = document.createComment("Comentario sobre el código");
+            document.body.appendChild(comentario);
+            alert("Se agregó un comentario a este documento, pero como sabe, los comentarios son invisibles. Mire desde inspeccionar elemento.");
+        }
+    </script>
+</body>
+
+</html>

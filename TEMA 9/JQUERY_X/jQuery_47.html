@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_47 - Eventos: Poner un evento para varios elementos. Uso de this, index y each</title>
+    <script src="jquery-3.5.1.js"></script>
+    <style type="text/css">
+        div {
+            border: 1px solid black;
+            margin: 30px;
+        }
+        
+        td {
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery_47 - Eventos: Poner un evento para varios elementos. Uso de this, index y each</h1>
+    Este ejercicio también muestra el uso de otros conceptos no relacionados con eventos: this, index y each
+    <div id="c1">
+        <p id="p1">Este es el primer párrafo</p>
+        <p id="p2">Este es el segundo párrafo</p>
+        <p id="p3">Este es el tercer párrafo</p>
+    </div>
+    <table>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+        </tr>
+    </table>
+
+    <script>
+        $(function() {
+            $("#c1 p").click(function() {
+                $(this).html($(this).html() + " --> <b>CLICK " + $(this).index() + "</b>");
+            });
+
+            $("tr:odd").each(function(i) {
+                $(this).on("click", "td:even", {
+                    x: i
+                }, function(evento) {
+                    alert(evento.target.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

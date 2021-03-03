@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO9</title>
+</head>
+
+<body>
+    <h1>RECURSO9</h1>
+    <hr>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 1</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 2</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 3</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 4</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 5</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 6</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 7</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 8</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 9</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 10</p>
+    <hr>
+    <script>
+        function f(element) {
+            var elemento_clonado = element.cloneNode(true);
+            var htmlcollection = document.children[0].children[1].getElementsByTagName("p");
+            var primer_parrafo = htmlcollection.item(0);
+            var ultimo_parrafo = htmlcollection.item(htmlcollection.length - 1);
+            if (htmlcollection.length % 2 == 0) {
+                document.children[0].children[1].insertBefore(elemento_clonado, primer_parrafo);
+            } else {
+                document.children[0].children[1].insertBefore(elemento_clonado, ultimo_parrafo.nextElementSibling);
+            }
+        }
+    </script>
+</body>
+
+</html>

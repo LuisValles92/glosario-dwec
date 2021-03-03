@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO17</title>
+</head>
+
+<body>
+    <h1>RECURSO17</h1>
+    <hr>
+    <p>P&Aacute;RRAFO 1 (VER ELEMENTS POR EL NAVEGADOR)</p>
+    <hr>
+    <script>
+        var nodoParrafo = document.children[0].children[1].children[2];
+        nodoParrafo.addEventListener("click", f);
+
+        function f() {
+            this.setAttribute("id", "parrafo_1");
+
+            var attr = document.createAttribute("title");
+            attr.value = "parrafo_primario";
+            this.setAttributeNode(attr);
+
+            this.style.background = "red";
+            this.style.color = "white";
+            this.style.fontSize = "30px";
+            this.style.padding = "10px";
+            this.style.textAlign = "center";
+            this.style.fontFamily = "Arial, Helvetica, sans-serif";
+
+            this.setAttribute("onmouseover", "f1(this)");
+            this.setAttribute("onmouseout", "f2(this)");
+        }
+
+        function f1(element) {
+            element.style.color = "yellow";
+        }
+
+        function f2(element) {
+            element.style.color = "white";
+        }
+    </script>
+</body>
+
+</html>

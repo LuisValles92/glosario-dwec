@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>RECURSO 3</title>
+</head>
+
+<script type="application/javascript">
+    function f1() {
+        var img = document.images[0];
+        // var img = document.getElementById('img_id1');
+        // console.log(img.style.visibility);
+        // debugger;
+        if (img.style.visibility == 'visible') {
+            img.style.visibility = 'hidden';
+        } else {
+            img.style.visibility = 'visible';
+        }
+    }
+
+    function f2() {
+        var img = document.images[1];
+        // var img = document.getElementById('img_id2');
+        if (img.style.visibility == 'visible') {
+            img.style.visibility = 'hidden';
+        } else {
+            img.style.visibility = 'visible';
+        }
+    }
+</script>
+
+<body>
+    <h1>RECURSO 3</h1>
+    <hr>
+    <div style="background-color: yellow; width: fit-content; height: fit-content;">
+        <img id="img_id1" style="float: left; visibility: visible;" src="https://www.beyourself.tv/wp-content/uploads/2019/01/lil-wayne-tha-carter-v-02.jpg" width="400px" height="300px" onload="setInterval(f1,1000);" />
+        <img id="img_id2" style="visibility: hidden;" src="https://i0.wp.com/www.slang.fm/wp-content/uploads/2020/07/records-logros-eminem-portada.jpg?fit=1280%2C720&ssl=1" width="400px" height="300px" onload="setInterval(f2,1000);" />
+    </div>
+    <hr>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_12 - Google Maps - Marcadores</title>
+    <style type="text/css">
+        #mapa {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>maps_12 - Google Maps - Marcadores</h1>
+    <hr />
+    <div id="mapa"></div>
+    <hr />
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        var mapaRibera;
+
+        function mifuncion() {
+            mapaRibera = new google.maps.Map(document.getElementById('mapa'), {
+                center: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                zoom: 18
+            });
+
+            var marcador1 = new google.maps.Marker({
+                position: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                map: mapaRibera,
+                title: 'IES Ribera de Castilla'
+            });
+
+            var marcador2 = new google.maps.Marker({
+                position: {
+                    lat: 41.6648,
+                    lng: -4.723900
+                },
+                title: 'Aula 2 de informática',
+
+                animation: google.maps.Animation.BOUNCE,
+                //animation: google.maps.Animation.DROP,
+
+                label: 'Etiqueta1',
+
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 5
+                },
+            });
+
+            marcador2.setMap(mapaRibera);
+
+            //Para eliminar una marca se asigna el parámetro null
+            //marcador2.setMap(null);
+        }
+
+        document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=' + apikeypersonal + '&callback=mifuncion"><\/script>');
+    </script>
+
+    <!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?callback=mifuncion">
+		</script> -->
+</body>
+
+</html>

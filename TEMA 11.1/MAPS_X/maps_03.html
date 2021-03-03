@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_03 - Google Static Maps - Markers</title>
+</head>
+
+<body>
+    <h1>maps_03 - Google Static Maps - Markers</h1>
+    <hr />
+
+    <h2>Marcas en Laguna de Duero, Renedo y Tudela de Duero</h2>
+    <img id="mapa1" />
+    <br /><br /><br />
+
+
+    <h2>Las mismas marcas pero sin parámetro CENTER. Se centra a partir de las marcas</h2>
+    <img id="mapa2" />
+    <br /><br /><br />
+
+
+    <h2>Se añaden marcas con formato ADDRESS</h2>
+    <img id="mapa3" />
+    <br /><br /><br />
+
+
+    <h2>Se añaden marcas con estilos distintos: Un parámetro markers por estilo usado</h2>
+    <img id="mapa4" />
+    <br /><br /><br />
+
+
+    <h2>Marcas con iconos personalizados</h2>
+    <img id="mapa5" />
+    <br /><br /><br />
+
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        var latlon = "41.659327,-4.726683";
+
+        //Marcas en Laguna de Duero, Renedo y Tudela de Duero
+        var pMarkers = "size:mid|color:blue|label:T|41.582842,-4.719873|41.654134,-4.629385|41.584665,-4.582853";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&center=" + latlon + "&zoom=11&size=640x480&markers=" + pMarkers;
+        document.getElementById("mapa1").setAttribute("src", img_url);
+
+
+        //Sin parámetro CENTER con Marcas en Laguna de Duero, Renedo y Tudela de Duero
+        var pMarkers = "size:mid|color:red|label:S|41.582842,-4.719873|41.654134,-4.629385|41.584665,-4.582853";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=11&size=640x480&markers=" + pMarkers;
+        document.getElementById("mapa2").setAttribute("src", img_url);
+
+
+        //Se añaden marcas con formato ADDRESS
+        var pMarkers = "size:mid|color:red|label:S|Simancas,Spain|Fuensaldaña,Spain|41.582842,-4.719873|41.654134,-4.629385|41.584665,-4.582853";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=11&size=640x480&markers=" + pMarkers;
+        document.getElementById("mapa3").setAttribute("src", img_url);
+
+
+        //Marcas con distintos estilos: Se pone un parámetro marker por estilo
+        var pMarkers1 = "size:mid|color:red|label:S|Simancas,Spain|Fuensaldaña,Spain";
+        var pMarkers2 = "size:mid|color:blue|label:A|41.582842,-4.719873";
+        var pMarkers3 = "size:mid|color:yellow|label:8|41.654134,-4.629385|41.584665,-4.582853";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=11&size=640x480&markers=" + pMarkers1 + "&markers=" + pMarkers2 + "&markers=" + pMarkers3;
+        document.getElementById("mapa4").setAttribute("src", img_url);
+
+
+        //Marcas con iconos personalizados: anchor, icon
+        var pMarkers1 = "anchor:10,2|icon:http://icons.iconarchive.com/icons/graphicloads/100-flat-2/32/share-2-icon.png|Fuensaldaña,Spain";
+        var pMarkers2 = "anchor:bottomright|icon:http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/32/Phone-2-icon.png|Simancas,Spain|41.582842,-4.719873";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=11&size=640x480&markers=" + pMarkers1 + "&markers=" + pMarkers2;
+        document.getElementById("mapa5").setAttribute("src", img_url);
+    </script>
+</body>
+
+</html>

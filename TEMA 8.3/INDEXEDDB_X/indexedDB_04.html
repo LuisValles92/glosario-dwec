@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>indexedDB_04 - Crear almacenes/tablas -> Key path: in-line vs out-of-line vs múltiple (AI:false)</title>
+</head>
+
+<body>
+    <h1>indexedDB_04 - Crear almacenes/tablas -> Key path: in-line vs out-of-line vs múltiple (AI:false)</h1>
+    <h2>Ver consola</h2>
+    <hr>
+    <button onclick="abrirBD();">CREAR BBDD Y ALMACENES/TABLAS</button>
+    <hr>
+
+    <script type="text/javascript">
+        var peticion, bd;
+
+        function abrirBD() {
+            if (window.indexedDB) {
+                peticion = window.indexedDB.open("bbdd");
+
+                peticion.onsuccess = function(evento) {
+                    console.log("\nONSUCCESS: Base de datos abierta correctamente: " + event.target.result.name);
+                    event.target.result.close();
+                };
+
+                peticion.onerror = function(evento) {
+                    console.log("ONERROR: No se ha creado la base de datos: " + event.target.errorCode);
+                };
+
+                peticion.onupgradeneeded = function(evento) {
+                    console.log("ONUPGRADENEEDED");
+                    bd = peticion.result;
+
+                    console.log("\nCASO 1: in-line keys (al especificar el keyPath se considera in-line)");
+                    var store1 = bd.createObjectStore("almacen1", {
+                        keyPath: "uuid"
+                    });
+                    console.log("keyPath: " + store1.keyPath); //uuid
+                    console.log("autoIncrement: " + store1.autoIncrement); //false
+                    store1.put({
+                        uuid: "u1",
+                        nombre: "n1"
+                    });
+
+                    console.log("\nCASO 2: out-of-line keys (al no especificar keyPath se considera key out-of-line)");
+                    var store2 = bd.createObjectStore("almacen2");
+                    console.log("keyPath: " + store2.keyPath); //null
+                    console.log("autoIncrement: " + store2.autoIncrement); //false
+                    store2.put({
+                        tipo: "bebida",
+                        cantidad: 100
+                    }, 11); //La clave es 11
+                    store2.put({
+                        tipo: "frutas"
+                    }, "comida"); //La clave es comida
+
+                    console.log("\nCASO 3: Uso de keyPath múltiple");
+                    var store3 = bd.createObjectStore("almacen3", {
+                        keyPath: ["cod", "dni"]
+                    });
+                    console.log("keyPath: " + store3.keyPath); //cod,dni
+                    console.log("autoIncrement: " + store3.autoIncrement); //false
+                    store3.put({
+                        cod: 1,
+                        dni: "d1",
+                    });
+                    /*
+                    Sobrescribe al anterior
+                    store3.put({
+                        cod: 1,
+                        dni: "d1",
+                    });
+                    */
+                    store3.put({
+                        cod: 1,
+                        dni: "d2",
+                        mes: "noviembre"
+                    });
+                    store3.put({
+                        cod: 2,
+                        dni: "d1",
+                        anio: 1992
+                    });
+                };
+            } else {
+                console.log("Su navegador no soporta IndexedDB");
+            }
+        }
+    </script>
+</body>
+
+</html>
