@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_49 - Eventos: Datos de eventos</title>
+    <script src="jquery-3.5.1.js"></script>
+</head>
+
+<body>
+    <h1>jQuery_49 - Eventos: Datos de eventos</h1>
+    <p id="p1">Este es el primer párrafo</p>
+
+    <script>
+        $(function() {
+            var objeto = {
+                atributo1: "valor1",
+                atributo2: "valor2"
+            };
+            $("#p1").click(objeto, function(evento) {
+                var c = "";
+                c += "DATOS PASADOS AL EVENTO";
+                c += "\nAtributo1: " + evento.data.atributo1;
+                c += "\nAtributo2: " + evento.data.atributo2;
+                c += "\n\nTIPO";
+                c += "\n" + evento.type;
+                c += "\n\nCREADO HACE";
+                c += "\n" + evento.timeStamp + " milisegundos";
+                evento.target.innerHTML += " <b>texto adicional</b>";
+                alert(c);
+            });
+        });
+    </script>
+</body>
+
+</html>

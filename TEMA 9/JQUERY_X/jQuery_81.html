@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_81 - Manipular el DOM: Copiar un elemento: clone</title>
+    <script src="jquery-3.5.1.js"></script>
+    <style>
+        div {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery_81 - Manipular el DOM: Copiar un elemento: clone</h1>
+    clone --> Crea una copia de los elementos seleccionados
+    <button id="boton1">Copiar</button>
+    <button id="boton2">Copiar (incluyendo evento onclick)</button>
+    <br /><br />
+    <div>
+        <img src="https://img.europapress.es/fotoweb/fotonoticia_20180414081332_420.webp" width="300px" />
+        <br />
+        <p>Es un dibujo</p>
+    </div>
+
+    <script>
+        $(function() {
+            $("#boton1").click(function() {
+                var objeto = $("div:first").clone();
+                $("body").append(objeto);
+            });
+
+            $("#boton2").click(function() {
+                var objeto = $("div:first").clone(true);
+                $("body").append(objeto);
+            });
+
+            $("div:first").click(function() {
+                alert("Has hecho click");
+            });
+        });
+    </script>
+</body>
+
+</html>

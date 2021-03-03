@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_15 - Google Maps - Situar marcas a partir de datos en JSON</title>
+    <style type="text/css">
+        #mapa {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head <body>
+<h1>maps_15 - Google Maps - Situar marcas a partir de datos en JSON</h1>
+<hr />
+<div id="mapa"></div>
+<hr />
+
+<script type="text/javascript" src="recursos/apikey.js"></script>
+<script type="text/javascript">
+    var mapaCatedrales;
+
+    function mifuncion() {
+        mapaCatedrales = new google.maps.Map(document.getElementById('mapa'), {
+            center: {
+                lat: 41.6644,
+                lng: -4.723201
+            },
+            zoom: 7
+        });
+
+        var datosJSON = {
+            catedrales: [{
+                nombre: 'Catedral de Ávila',
+                posicion: {
+                    lat: 40.65599686889035,
+                    lng: -4.69789981842041
+                }
+            }, {
+                nombre: 'Catedral de Astorga',
+                posicion: {
+                    lat: 42.45750242514324,
+                    lng: -6.057372093200684
+                }
+            }, {
+                nombre: 'Catedral de Ciudad Rodrigo',
+                posicion: {
+                    lat: 40.59873697573391,
+                    lng: -6.53562068939209
+                }
+            }]
+        };
+
+        var marcadorCatedral;
+        var nombreCatedral;
+        var latitud, longitud;
+
+        for (var i = 0; i < datosJSON.catedrales.length; i++) {
+
+            nombreCatedral = datosJSON.catedrales[i].nombre;
+            latitud = datosJSON.catedrales[i].posicion.lat;
+            longitud = datosJSON.catedrales[i].posicion.lng;
+
+            marcadorCatedral = new google.maps.Marker({
+                position: {
+                    lat: latitud,
+                    lng: longitud
+                },
+                map: mapaCatedrales,
+                title: nombreCatedral,
+            });
+        }
+    }
+
+    document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=' + apikeypersonal + '&callback=mifuncion"><\/script>');
+</script>
+
+<!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?callback=mifuncion">
+		</script> -->
+</body>
+
+</html>

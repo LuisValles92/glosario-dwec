@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>RECURSO 5</title>
+    <style>
+        div {
+            height: 500px;
+            width: 600px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>RECURSO 5: HTMLElement - Propiedades => offsetHeight, offsetWidth, offsetTop, offsetLeft, offsetParent</h1>
+    <p>Clickar sobre el div para ver los valores de sus propiedades.</p>
+    <hr>
+    <div onclick="f(this);"></div>
+    <hr>
+    <ul>
+        <p>Todas son propiedades de s&oacute;lo lectura.</p>
+        <li>
+            <p>HTMLElement.offsetHeight devuelve el alto de un elemento, incluyendo el padding vertical y los bordes, en p&iacute;xeles, como un n&uacute;mero entero.</p>
+        </li>
+        <li>
+            <p>HTMLElement.offsetWidth devuelve el ancho del layout del elemento.</p>
+        </li>
+        <li>
+            <p>HTMLElement.offsetTop retorna la distancia de este elemento respecto al borde superior del nodo del elemento padre m&aacute;s cercano (body, en este caso). Var&iacute;a seg&uacute;n el ancho de la ventana del navegador.</p>
+        </li>
+        <li>
+            <p>HTMLElement.offsetLeft devuelve el n&uacute;mero de p&iacute;xeles a la izquierda del elemento actual con respecto al nodo del elemento padre.</p>
+        </li>
+        <li>
+            <p>HTMLElement.offsetParent retorna una referencia al objeto, el cual es el elemento contenedor (padre) posicionado m&aacute;s cercano.</p>
+        </li>
+    </ul>
+
+    <script type="application/javascript">
+        function f(element) {
+            alert("ELEMENTO HTML - DIV: " + element +
+                "\n\nALTO (offsetHeight): " + element.offsetHeight +
+                "\nANCHO (offsetWidth): " + element.offsetWidth +
+                "\nDISTANCIA SUPERIOR RESPECTO AL NODO DEL ELEMENTO PADRE (offsetTop): " + element.offsetTop +
+                "\nDISTANCIA A LA IZQUIERDA RESPECTO AL NODO DEL ELEMENTO PADRE (offsetLeft): " + element.offsetLeft +
+                "\nREFERENCIA DEL NODO DEL ELEMENTO PADRE (offsetParent): " + element.offsetParent);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>cookies_04 - Modificar cookies</title>
+</head>
+
+<body>
+    <h1>cookies_04 - Modificar cookies</h1>
+    <hr />
+    <h2>Modifica o establece cookie</h2>
+    <h3>Las convierte en cookies de sesión</h3>
+    Nombre de la cookie a modificar:
+    <input type="text" id="idnombre" />
+    <br /><br /> Nuevo valor de la cookie:
+    <input type="text" id="idvalor" />
+    <br /><br />
+    <button onclick="modificarUnaCookie();">Modificar una cookie</button>
+
+    <script type="text/javascript">
+        function modificarUnaCookie() {
+            document.cookie = document.getElementById("idnombre").value + "=" + document.getElementById("idvalor").value;
+        }
+    </script>
+</body>
+
+</html>

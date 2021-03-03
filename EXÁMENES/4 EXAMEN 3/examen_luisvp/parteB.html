@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte B</title>
+</head>
+
+<body>
+    <h1>Parte B</h1>
+    <legend>Identificador:</legend>
+    <input type="number" id="campo_identificador" min="1">
+    <legend>Nombre:</legend>
+    <input type="text" id="campo_nombre">
+    <legend>Dirección:</legend>
+    <input type="text" id="campo_direccion">
+    <legend>Sexo:</legend>
+    <input checked="checked" type="radio" name="campo_sexo" id="radio_masculino"><span>Masculino</span>
+    <input type="radio" name="campo_sexo" id="radio_femenino"><span>Femenino</span>
+    <legend>Premium</legend>
+    <input type="checkbox" id="campo_premium"><br>
+    <button onclick="enviarDatos();">Enviar datos</button>
+    <p id="estado"></p>
+
+    <script type="application/javascript" src="ls_script.js"></script>
+    <script type="application/javascript">
+        function enviarDatos() {
+            var valor_radio, valor_checkbox;
+            if (document.getElementById("radio_masculino").checked) {
+                valor_radio = "M";
+            } else valor_radio = "F";
+            if (document.getElementById("campo_premium").checked) {
+                valor_checkbox = "Si";
+            } else valor_checkbox = "No";
+            var s = {
+                identificador: document.getElementById("campo_identificador").value,
+                nombre: document.getElementById("campo_nombre").value,
+                direccion: document.getElementById("campo_direccion").value,
+                sexo: valor_radio,
+                premium: valor_checkbox
+            };
+            establecerLS("socio_json", JSON.stringify(s));
+        }
+
+        window.addEventListener("storage", function(event) {
+            if (obtenerLS("estado") != null) {
+                document.getElementById("estado").textContent = obtenerLS("estado");
+                eliminarLS("estado");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>indexedDB_09 - Recuperar datos: get y getKey</title>
+    <style>
+        p {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>indexedDB_09 - Recuperar datos: get y getKey</h1>
+    <h2>Previamente ejecutar indexedDB_08</h2>
+    <legend>Key del libro:</legend>
+    <input type="number" id="idLibro" min="1" />
+    <br />
+    <hr>
+    <button onclick="obtenerDatos();">OBTENER DATOS</button>
+    <hr>
+    <hr>
+    <h3>get</h3>
+    <p id="datosGet"></p>
+    <hr>
+    <hr>
+    <h3>getKey</h3>
+    <p id="datosGetKey"></p>
+    <hr>
+
+    <script type="text/javascript">
+        function obtenerDatos() {
+            var peticion, bd, transaccion, almacenLibros, idLibro;
+            idLibro = document.getElementById("idLibro").value;
+            if (window.indexedDB) {
+                if (idLibro != "") {
+                    peticion = window.indexedDB.open("biblioteca");
+
+                    peticion.onsuccess = function(event) {
+                        bd = peticion.result;
+                        transaccion = bd.transaction(bd.objectStoreNames, "readwrite");
+                        transaccion.oncomplete = function(evento) {
+                            console.log("Consulta hecha")
+                        };
+                        almacenLibros = transaccion.objectStore("libros");
+
+                        //USAMOS GET
+                        var registro1 = almacenLibros.get(parseInt(idLibro));
+                        registro1.onsuccess = function(event) {
+                            if (registro1.result != undefined) {
+                                var c = "";
+                                c += "ISBN: " + registro1.result.isbn;
+                                c += "<br />TITULO: " + registro1.result.titulo;
+                                c += "<br />AUTOR: " + registro1.result.autor;
+                                c += "<br />EDITORIAL: " + registro1.result.editorial;
+                                c += "<br />Nº DE PÁGINAS: " + registro1.result.paginas;
+                                c += "<br />PRECIO: " + registro1.result.precio;
+                                document.getElementById("datosGet").innerHTML = c;
+                            } else document.getElementById("datosGet").innerHTML = "Sin resultados";
+                        }
+
+                        //USAMOS GETKEY
+                        //Devuelve undefined si la key no existe
+                        var registro2 = almacenLibros.getKey(parseInt(idLibro));
+                        registro2.onsuccess = function(evento) {
+                            var c = "";
+                            c += "KEY: " + registro2.result;
+                            document.getElementById("datosGetKey").innerHTML = c;
+                        }
+
+                        bd.close();
+                    };
+
+                    peticion.onerror = function(evento) {
+                        alert("No se ha creado la base de datos: " + event.target.errorCode);
+                    };
+                } else {
+                    alert("Introduce un valor");
+                }
+            } else {
+                console.log("IndexedDB no está soportado");
+            }
+        }
+    </script>
+</body>
+
+</html>

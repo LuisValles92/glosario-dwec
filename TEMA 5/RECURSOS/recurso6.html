@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO6</title>
+</head>
+
+<body>
+    <h1>RECURSO6</h1>
+    <!-- <div> -->
+    <p>P&Aacute;RRAFO 1</p>
+    <p>P&Aacute;RRAFO 2</p>
+    <p>P&Aacute;RRAFO 3</p>
+    <p>P&Aacute;RRAFO 4</p>
+    <p>P&Aacute;RRAFO 5</p>
+    <p>P&Aacute;RRAFO 6</p>
+    <p>P&Aacute;RRAFO 7</p>
+    <p>P&Aacute;RRAFO 8</p>
+    <p>P&Aacute;RRAFO 9</p>
+    <p>P&Aacute;RRAFO 10</p>
+    <!-- </div> -->
+    <hr>
+    <button onclick="f();">DESORDENAR P&Aacute;RRAFOS ALEATORIAMENTE</button>
+    <hr>
+    <script>
+        function f() {
+            /*
+            var array = [1, 2, 3];
+            console.log(array.indexOf(4)); //-1
+            console.log(array.indexOf(3)); //2
+            */
+            // var html_collection = document.children[0].children[1].children[1].children;//Con div
+            var html_collection = document.getElementsByTagName("p");
+            var array_numeros_aleatorios = [];
+            do {
+                var numero_aleatorio = Math.floor(Math.random() * (html_collection.length - 0) + 0);
+                if (array_numeros_aleatorios.indexOf(numero_aleatorio) == -1) {
+                    array_numeros_aleatorios.push(numero_aleatorio);
+                }
+            } while (array_numeros_aleatorios.length != html_collection.length);
+            console.log(array_numeros_aleatorios);
+
+            var arr = new Array();
+            for (let i = 0; i < html_collection.length; i++) {
+                arr.push(html_collection.item(i).textContent);
+            }
+            console.log(arr);
+
+            for (let i = 0; i < html_collection.length; i++) {
+                html_collection.item(i).textContent = arr[array_numeros_aleatorios[i]];
+            }
+        }
+    </script>
+</body>
+
+</html>

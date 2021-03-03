@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>cookies_03 - Eliminar cookies</title>
+</head>
+
+<body>
+    <h1>cookies_03 - Eliminar cookies</h1>
+    <hr />
+    <h2>Si eliminamos una cookie con un nombre que no existe no ocurre nada</h2>
+    <button onclick="eliminarTodasLasCookies();">Eliminar todas las cookies</button>
+    <br /><br />
+    <input type="text" id="idnombre" placeholder="Nombre de la cookie" />
+    <button onclick="eliminarUnaCookie(document.getElementById('idnombre').value);">Eliminar cookie</button>
+
+    <script type="text/javascript">
+        function eliminarTodasLasCookies() {
+            var listaCookies = document.cookie.split(';');
+            var nombre = "";
+            for (i = 0; i < listaCookies.length; i++) {
+                nombre = listaCookies[i].split('=')[0].trim();
+                document.cookie = nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            }
+            alert("Todas las cookies han sido eliminadas");
+        }
+
+        function eliminarUnaCookie(nombre) {
+            document.cookie = nombre + "=; max-age=0";
+            alert("La cookie con nombre " + nombre + " ha sido eliminada");
+        }
+    </script>
+</body>
+
+</html>

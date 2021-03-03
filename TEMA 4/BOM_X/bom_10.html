@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>bom_10 - Objeto Document: Propiedades</title>
+</head>
+<script type="text/javascript">
+    function oculto() {
+        document.getElementById("pOculto").innerHTML += document.hidden + "&nbsp;&nbsp;&nbsp;";
+    }
+</script>
+
+<body onload="setInterval(oculto,1000);">
+    <h1>bom_10 - Objeto Document: Propiedades</h1>
+
+    <hr>
+    <script type="text/javascript">
+        //PROPIEDADES
+
+        //URL
+        document.write("<p><b>document.URL: Devuelve la URL completa del documento HTML.</b><br>" + document.URL + "</p>");
+
+        //baseURI
+        document.write("<p><b>document.baseURI: Devuelve el URI base absoluto de un documento.</b><br>" + document.baseURI + "</p>");
+
+        //baseURI
+        document.write("<p><b>document.documentURI: Establece o devuelve la ubicación del documento</b><br>" + document.documentURI + "</p>");
+
+        //domain
+        document.write("<p><b>document.domain: Returns the domain name of the server that loaded the document</b><br>" + document.domain + "</p>");
+
+        //doctype
+        document.write("<p><b>document.doctype: Devuelve la Declaración de tipo de documento asociada con el documento.</b><br>" + document.doctype + "</p>");
+        document.write("<p><b>document.doctype.name: El objeto DocumentType tiene una propiedad name, que devuelve el nombre del doctype.</b><br>" + document.doctype.name + "</p>");
+
+        //hidden
+        document.write("<p><b>document.hidden: Retorna un booleano segun se muestre o no la ventana del navegador en pantalla</b><br>" + document.hidden + "</p>");
+
+        //documentElement
+        document.write("<p><b>document.documentElement: Devuelve el < html > del documento.</b><br>" + document.documentElement + "</p>");
+
+        document.write("<p><b>document.documentElement.tagName:</b><br>" + document.documentElement.tagName + "</p>");
+
+        //body
+        document.write("<p><b>document.body:</b> " + document.body + "<br />");
+        document.write("<p><b>document.body.tagName:</b> " + document.body.tagName + "</p>");
+
+        //head
+        document.write("<p><b>document.head:</b> " + document.head + "<br />");
+        document.write("<p><b>document.head.tagName:</b> " + document.head.tagName + "</p>");
+
+        //title
+        document.title = "bom_10 - Objeto Document: Propiedades MODIFICADO";
+        document.write("<p><b>document.title:</b> " + document.title + "</p>");
+
+        //inputEncoding
+        document.write("<p><b>document.inputEncoding: Devuelve la codificación, el juego de caracteres, utilizado para el documento.</b><br>" + document.inputEncoding + "</p>");
+
+        //characterSet
+        document.write("<p><b>document.characterSet: Devuelve la codificación de caracteres del documento.</b><br>" + document.characterSet + "</p>");
+
+        //lastModified
+        document.write("<p><b>document.lastModified:</b> " + document.lastModified + "</p>");
+
+        //readyState
+        document.write("<p><b>document.readyState:</b> " + document.readyState + "</p>");
+
+
+
+        function comprobarElementoActivo() {
+            alert("document.activeElement.tagName: " + document.activeElement.tagName);
+        }
+
+        function comprobarEstado() {
+            alert("document.readyState: " + document.readyState);
+        }
+    </script>
+    <hr>
+    <p>Evento onkeypress - <b>document.activeElement.tagName</b>: Devuelve el elemento actualmente enfocado en el documento.</p>
+    <hr>
+    <input type="text" name="texto" onkeypress="comprobarElementoActivo();" /></p>
+    <button onclick="comprobarElementoActivo();">Comprobar elemento activo</button></p>
+    <hr>
+    <p><b>document.readyState: Devuelve una cadena mostrando el estado del documento actual. Puede ser uninitialized (aun no ha comenzado a cargarse), cargando, cargado, interactivo (se ha cargado lo suficiente y el usuario puede interactuar con el) y completo (completamente cargado).</b></p>
+    <hr>
+    <button onclick="comprobarEstado();">Comprobar estado</button></p>
+    <hr>
+    <a href="bom_10_A.html">Enlace al ejercicio bom_10_A.html</a></p>
+    <hr>
+    <p id="pOculto"><b>document.hidden:</b> </p>
+    <hr>
+</body>
+
+</html>

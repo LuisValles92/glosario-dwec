@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_04 - Google Static Maps - Paths</title>
+</head>
+
+<body>
+    <h1>maps_04 - Google Static Maps - Paths</h1>
+    <hr />
+
+    <h2>Path: Ribera de Castilla, Plaza Mayor y Plaza Circular</h2>
+    <img id="mapa1" />
+    <br /><br /><br />
+
+
+    <h2>Path: Ribera de Castilla, Plaza Mayor y Plaza Circular con estilos distintos</h2>
+    <img id="mapa2" />
+    <br /><br /><br />
+
+
+    <h2>Path: Área entre el Ribera de Castilla, Plaza Mayor y Plaza Circular</h2>
+    <img id="mapa3" />
+    <br /><br /><br />
+
+
+    <h2>Path: Encoded Polylines</h2>
+    <img id="mapa4" />
+    <br /><br /><br />
+
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        //PATH 1
+        var pathStyle = "weight:8|color:0x0000FF66";
+        var point1 = "41.664341,-4.722882"; //IES Ribera de Castilla
+        var point2 = "41.652366,-4.728351"; //Plaza Mayor
+        var point3 = "41.652858,-4.721911"; //Plaza Universidad
+        var pPath = pathStyle + "|" + point1 + "|" + point2 + "|" + point3;
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=15&size=640x480&path=" + pPath;
+        document.getElementById("mapa1").setAttribute("src", img_url);
+
+
+        //PATH 2
+        var pathStyle1 = "weight:4|color:blue";
+        var pathStyle2 = "weight:6|color:red";
+        var point1 = "41.664341,-4.722882"; //IES Ribera de Castilla
+        var point2 = "41.652366,-4.728351"; //Plaza Mayor
+        var point3 = "41.652858,-4.721911"; //Plaza Universidad
+        var pPath1 = pathStyle1 + "|" + point1 + "|" + point2;
+        var pPath2 = pathStyle2 + "|" + point2 + "|" + point3;
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=15&size=640x480&path=" + pPath1 + "&path=" + pPath2;
+        document.getElementById("mapa2").setAttribute("src", img_url);
+
+
+        //PATH 3
+        //Los dos últimos caracteres del color indican transparencia. Variar
+        var pathStyle = "weight:4|color:0x000000FF|fillcolor:0xFFFF0077";
+        var point1 = "41.664341,-4.722882"; //IES Ribera de Castilla
+        var point2 = "41.652366,-4.728351"; //Plaza Mayor
+        var point3 = "41.652858,-4.721911"; //Plaza Universidad
+        var pPath = pathStyle + "|" + point1 + "|" + point2 + "|" + point3;
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=15&size=640x480&path=" + pPath;
+        document.getElementById("mapa3").setAttribute("src", img_url);
+
+
+        //PATH 4 --> https://developers.google.com/maps/documentation/utilities/polylineutility
+        //Resultado de la decodificación del parque Ribera de Castilla: _gh}F~sz[b@qA}EgFyC{FcG{NzCwBTCv@}AEQLa@}@oAe@YM_Fg@DGQ_Gh@yBgLqChAXr@`@~BZnAPnArA~G?hCFnBj@~C|@vCbB|BvBzBTJDVlDrDrHjJ
+        //Hacerlo con un conjunto de puntos grande
+        var pathStyle = "weight:4|color:0xFF000066|fillcolor:0xFFFF0066";
+        var enc = "enc:_gh}F~sz[b@qA}EgFyC{FcG{NzCwBTCv@}AEQLa@}@oAe@YM_Fg@DGQ_Gh@yBgLqChAXr@`@~BZnAPnArA~G?hCFnBj@~C|@vCbB|BvBzBTJDVlDrDrHjJ";
+        var enc = "enc:{fe}Fp~z[gCcDY}@IsAfGgDdNaHR@XhAe@h@Sf@BnAXzPa@pFmBvFkLkO"; //Campo grande
+        var enc = "enc:svh}Fjsy[CECBQi@tBwADPPMFRHHFRLNiAxBU]z@_BIMiBnA"; //Instituto
+        var enc = "enc:crh}Ffky[~Tmb@`Rt[yRd_@mS{V"; //Barrio
+        var enc = "enc:{bukH~tynVzjBcjA_Tw~HgyD|x@c}CjhCnbCddDzhBah@??|Uzo@"
+
+
+
+        var pPath = pathStyle + "|" + enc;
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?key=" + apikeypersonal + "&zoom=15&size=640x480&path=" + pPath;
+        document.getElementById("mapa4").setAttribute("src", img_url);
+    </script>
+</body>
+
+</html>

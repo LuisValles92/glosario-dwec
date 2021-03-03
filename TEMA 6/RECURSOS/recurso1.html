@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO1</title>
+</head>
+
+<body>
+    <h1>RECURSO1</h1>
+    Primer formulario:
+    <form name="primer_formulario">
+        Nombre:<input type="text" name="nombre"><br> Apellidos:
+        <input type="text" name="apellidos">
+    </form>
+    <br> Segundo formulario:
+    <form name="segundo_formulario">
+        Localidad:<input type="text" name="localidad"><br> Provincia:
+        <input type="text" name="provincia"><br>País:
+        <input type="text" name="pais">
+    </form><br>
+    <hr>
+    <button onclick="f();">Ver datos de todos los formularios</button>
+    <hr>
+    <script type="application/javascript">
+        function f() {
+            var htmlcollection = document.forms;
+            var mensaje = "";
+            for (let i = 0; i < htmlcollection.length; i++) {
+                var elemento_formulario = htmlcollection.item(i);
+                for (let j = 0; j < elemento_formulario.elements.length; j++) {
+                    mensaje += elemento_formulario.elements[j].name + ": " + elemento_formulario.elements[j].value + "\n";
+                }
+            }
+            alert(mensaje);
+        }
+    </script>
+</body>
+
+</html>

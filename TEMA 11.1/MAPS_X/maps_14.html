@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_14 - Google Maps - Ventana de información</title>
+    <style type="text/css">
+        #mapa {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>maps_14 - Google Maps - Ventana de información</h1>
+    <hr />
+    <div id="mapa"></div>
+    <hr />
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        var mapaRibera;
+
+        function mifuncion() {
+            mapaRibera = new google.maps.Map(document.getElementById('mapa'), {
+                center: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                zoom: 18
+            });
+
+            var marcadorRibera = new google.maps.Marker({
+                position: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                map: mapaRibera,
+                title: 'IES Ribera de Castilla',
+            });
+
+            var contenido = "<h3>IES Ribera de Castilla</h3>";
+            contenido += "<h4>Familias profesionales de FP</h4>";
+            contenido += "<ul><li>Administrativo</li><li>Informática</li><li>Electrónica</li><li>Madera</li></ul><br />";
+            contenido += "<a href='http://www.iesribera.es'>IES Ribera de Castilla</a>";
+
+            var ventana = new google.maps.InfoWindow({
+                content: contenido
+            });
+
+            marcadorRibera.addListener('click', function() {
+                ventana.open(mapaRibera, marcadorRibera);
+            });
+        }
+
+        document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=' + apikeypersonal + '&callback=mifuncion"><\/script>');
+    </script>
+
+    <!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?callback=mifuncion">
+		</script> -->
+</body>
+
+</html>

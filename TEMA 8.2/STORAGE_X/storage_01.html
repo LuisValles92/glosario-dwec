@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>storage_01 - localStorage: setItem("clave","valor"), getItem("clave"), length</title>
+</head>
+
+<body>
+    <h1>storage_01 - localStorage: setItem("clave","valor"), getItem("clave"), length</h1>
+    <hr />
+    <h2>Ver Application - Local Storage</h2>
+    <h3>Devuelve null como valor si la clave buscada no existe</h3>
+    Clave:
+    <br />
+    <input type="text" id="clave" />
+    <br /><br /> Valor:
+    <br />
+    <input type="text" id="valor" />
+    <br /><br />
+    <button onclick="establecerClaveValor();">Establecer clave-valor</button>
+    <button onclick="obtenerValor();">Obtener valor</button>
+    <br /><br />
+    <button onclick="establecerMediantePuntoCorchete();">Establecer y obtener valor mediante punto y corchete</button>
+    <br /><br />
+    <button onclick="alert('Número de elementos: ' + localStorage.length);">Obtener número de elementos</button>
+
+    <script type="text/javascript">
+        function establecerClaveValor() {
+            var c = document.getElementById("clave").value;
+            var v = document.getElementById("valor").value;
+            window.localStorage.setItem(c, v);
+            localStorage.setItem(c, v);
+        }
+
+        function obtenerValor() {
+            var c = document.getElementById("clave").value;
+            alert(window.localStorage.getItem(c));
+        }
+
+        function establecerMediantePuntoCorchete() {
+            window.localStorage.ciudad = "Valladolid";
+            localStorage["color"] = "verde";
+            alert("Valores: " + localStorage.ciudad + " y " + localStorage["color"]);
+        }
+    </script>
+</body>
+
+</html>

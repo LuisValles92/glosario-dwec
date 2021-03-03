@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RECURSO8</title>
+</head>
+
+<body>
+    <h1>RECURSO8</h1>
+    <hr>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 1</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 2</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 3</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 4</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 5</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 6</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 7</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 8</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 9</p>
+    <p style="border: 2px solid black;" onclick="f(this);">P&Aacute;RRAFO 10</p>
+    <hr>
+    <script>
+        function f(element) {
+            var html_collection = document.getElementsByTagName("p");
+            var cadena = "";
+            for (let i = 0; i < html_collection.length; i++) {
+                if (i != html_collection.length - 1) {
+                    cadena += html_collection.item(i).innerHTML + "<br>";
+                } else {
+                    cadena += html_collection.item(i).innerHTML;
+                }
+            }
+            element.innerHTML = cadena;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_16 - Google Maps - Eventos</title>
+    <style type="text/css">
+        #mapa {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>maps_16 - Google Maps - Eventos</h1>
+    <hr />
+
+    <table>
+        <tr>
+            <td>
+                <div id="mapa"></div>
+            </td>
+            <td>
+                <span id="evento_bounds_changed">bounds_changed</span><br />
+                <span id="evento_center_changed">center_changed</span><br />
+                <span id="evento_click">click</span><br />
+                <span id="evento_dblclick">dblclick</span><br />
+                <span id="evento_drag">drag</span><br />
+                <span id="evento_dragend">dragend</span><br />
+                <span id="evento_dragstart">dragstart</span><br />
+                <span id="evento_heading_changed">heading_changed</span><br />
+                <span id="evento_idle">idle</span><br />
+                <span id="evento_maptypeid_changed">maptypeid_changed</span><br />
+                <span id="evento_mousemove">mousemove</span><br />
+                <span id="evento_mouseout">mouseout</span><br />
+                <span id="evento_mouseover">mouseover</span><br />
+                <span id="evento_projection_changed">projection_changed</span><br />
+                <span id="evento_resize">resize</span><br />
+                <span id="evento_rightclick">rightclick</span><br />
+                <span id="evento_tilesloaded">tilesloaded</span><br />
+                <span id="evento_tilt_changed">tilt_changed</span><br />
+                <span id="evento_zoom_changed">zoom_changed</span><br />
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        function mifuncion() {
+            mapa = new google.maps.Map(document.getElementById('mapa'), {
+                center: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                zoom: 7
+            });
+
+
+            mapa.addListener("bounds_changed", function() {
+                document.getElementById("evento_bounds_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_bounds_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("center_changed", function() {
+                document.getElementById("evento_center_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_center_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("click", function() {
+                document.getElementById("evento_click").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_click").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("dblclick", function() {
+                document.getElementById("evento_dblclick").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_dblclick").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("drag", function() {
+                document.getElementById("evento_drag").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_drag").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("dragend", function() {
+                document.getElementById("evento_dragend").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_dragend").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("dragstart", function() {
+                document.getElementById("evento_dragstart").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_dragstart").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("heading_changed", function() {
+                document.getElementById("evento_heading_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_heading_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("idle", function() {
+                document.getElementById("evento_idle").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_idle").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("maptypeid_changed", function() {
+                document.getElementById("evento_maptypeid_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_maptypeid_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("mousemove", function() {
+                document.getElementById("evento_mousemove").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_mousemove").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("mouseout", function() {
+                document.getElementById("evento_mouseout").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_mouseout").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("mouseover", function() {
+                document.getElementById("evento_mouseover").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_mouseover").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("projection_changed", function() {
+                document.getElementById("evento_projection_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_projection_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("resize", function() {
+                document.getElementById("evento_resize").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_resize").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("rightclick", function() {
+                document.getElementById("evento_rightclick").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_rightclick").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("tilesloaded", function() {
+                document.getElementById("evento_tilesloaded").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_tilesloaded").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("tilt_changed", function() {
+                document.getElementById("evento_tilt_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_tilt_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+            mapa.addListener("zoom_changed", function() {
+                document.getElementById("evento_zoom_changed").style.backgroundColor = "yellow";
+                setTimeout(function() {
+                    document.getElementById("evento_zoom_changed").style.backgroundColor = "white";
+                }, 1000);
+            });
+
+        }
+
+        document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=' + apikeypersonal + '&callback=mifuncion"><\/script>');
+    </script>
+
+    <!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?callback=mifuncion">
+		</script> -->
+</body>
+
+</html>

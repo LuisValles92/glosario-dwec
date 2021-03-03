@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECURSO3</title>
+</head>
+
+<body>
+    <h1>RECURSO3: Simular un banco</h1>
+    <h2>Saldo actual: <span id="saldo"></span> €</h2>
+    <input type="number" id="valor_ingreso" value="0" min="0" step="0.1">
+    <button id="ingresar">INGRESAR</button>
+    <br><br>
+    <input type="number" id="valor_retiro" value="0" min="0" step="0.1">
+    <button id="retirar">RETIRAR</button>
+    <script type="application/javascript">
+        document.body.addEventListener("load", f());
+
+        function f() {
+            var cadena_saldo = leerUnaCookie("saldo");
+            if (cadena_saldo == "") {
+                establecerUnaCookie("saldo", "0", 5);
+            }
+            document.getElementById("saldo").textContent = leerUnaCookie("saldo");
+            document.getElementById("valor_retiro").setAttribute("max", leerUnaCookie("saldo"));
+        }
+
+        function leerUnaCookie(nombre) {
+            var resultado = "";
+            var busqueda = nombre + "=";
+            var listCookies = document.cookie.split(';');
+            var par = "";
+            for (var i = 0; i < listCookies.length; i++) {
+                par = listCookies[i];
+                while (par.charAt(0) == ' ') {
+                    par = par.substring(1);
+                }
+                if (par.indexOf(busqueda) == 0) {
+                    resultado = par.substring(busqueda.length, par.length);
+                }
+            }
+            return resultado;
+        }
+
+        function establecerUnaCookie(nombre, valor, dias = 0) {
+            var cadena = "";
+            if (dias > 0) {
+                var fecha = new Date();
+                fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + fecha.toUTCString();
+                cadena = nombre + "=" + valor + ";" + expires; //DURARERA
+            } else {
+                cadena = nombre + "=" + valor; //SESIÓN
+            }
+            document.cookie = cadena;
+        }
+
+        document.getElementById("ingresar").addEventListener("click", e => {
+            var saldo = parseFloat(leerUnaCookie("saldo"));
+            var ingreso = parseFloat(document.getElementById("valor_ingreso").value);
+            saldo += ingreso;
+            establecerUnaCookie("saldo", saldo.toString(), 5);
+            location.href = "recurso3.html";
+        });
+
+        document.getElementById("retirar").addEventListener("click", e => {
+            var saldo = parseFloat(leerUnaCookie("saldo"));
+            var retiro = parseFloat(document.getElementById("valor_retiro").value);
+            saldo -= retiro;
+            establecerUnaCookie("saldo", saldo.toString(), 5);
+            location.href = "recurso3.html";
+        });
+    </script>
+</body>
+
+</html>

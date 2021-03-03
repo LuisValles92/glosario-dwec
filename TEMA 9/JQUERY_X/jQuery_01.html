@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery_01 - Básico</title>
+    <script src="jquery-3.5.1.js"></script>
+</head>
+
+<body>
+    <h1>jQuery_01 - Básico</h1>
+    <p>Esto es un párrafo</p>
+    <input type="button" value="A" onclick="$('#capa').html('Pulsó el botón A');">
+    <input type="button" id="botonB" value="B">
+    <div id="capa">Esto es un div</div>
+
+    <script>
+        //3 formas de hacer lo mismo
+        $(function() {
+            $("p").css({
+                color: "green"
+            });
+
+            //Secuencial: no aplica el color verde anterior
+            $("<p>Esto es un parrafo</p>").appendTo("body");
+
+            $('#botonB').click(function() {
+                $('#capa').html('Pulsó el botón B');
+            });
+        });
+
+        //Aquí sí que aplicaría los colores amarillo o rojo a todos los p
+        /*
+        $(document).ready(function() {
+            $("p").css({
+                color: "yellow"
+            });
+        });
+
+        jQuery(function() {
+            $("p").css({
+                color: "red"
+            });
+        });
+        */
+
+        //$(function () {
+        $("p").css({
+            color: "aqua"
+        }); //No se ejecuta si no está dentro de un función
+        //});
+    </script>
+</body>
+
+</html>

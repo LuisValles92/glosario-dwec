@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>maps_09 - Google Maps - Básico</title>
+    <style type="text/css">
+        #mapa {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>maps_09 - Google Maps - Básico</h1>
+    <hr />
+    <div id="mapa"></div>
+    <hr />
+
+    <script type="text/javascript" src="recursos/apikey.js"></script>
+    <script type="text/javascript">
+        var mapa;
+
+        function mifuncion() {
+            mapa = new google.maps.Map(document.getElementById('mapa'), {
+                center: {
+                    lat: 41.6644,
+                    lng: -4.723201
+                },
+                zoom: 18
+            });
+        }
+
+        document.write('<script async defer src="https://maps.googleapis.com/maps/api/js?key=' + apikeypersonal + '&callback=mifuncion"><\/script>');
+    </script>
+
+    <!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?&callback=mifuncion">
+		</script> -->
+
+    <!-- <script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=" + apikeypersonal + "&callback=mifuncion">
+		</script> -->
+</body>
+
+</html>
